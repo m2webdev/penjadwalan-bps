@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [DashboardController::class, 'index'])->name('home');
-Route::get('/auth/logout', [SessionController::class, 'logout'])->name('logout');
+Route::middleware(["signin"])->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('home');
+    Route::get('/auth/logout', [SessionController::class, 'logout'])->name('logout');
+});
+
 Route::get('/auth', [SessionController::class, 'index']);
 Route::post('/auth/login', [SessionController::class, 'login'])->name('login');
 Route::post('/auth/forget', [SessionController::class, 'forget'])->name('forget');
