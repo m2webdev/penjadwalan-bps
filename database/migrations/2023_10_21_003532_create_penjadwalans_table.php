@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('penjadwalans', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id'); 
+            $table->unsignedBigInteger('jadwal_id'); 
+            $table->dateTime('tanggal_jadwal');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('jadwal_id')->references('id')->on('jadwals');
             $table->timestamps();
         });
     }
