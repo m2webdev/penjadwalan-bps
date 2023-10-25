@@ -214,8 +214,8 @@
                                                                         <div class="row mb-3">
                                                                             <div
                                                                                 class="form-floating form-floating-outline mb-4">
-                                                                                <input class="form-control" type="date" value={{$penjadwalan->tanggal_jadwal}}
-                                                                                    id="html5-date-input"
+                                                                                <input class="form-control" type="datetime-local" value={{$penjadwalan->tanggal_jadwal}}
+                                                                                    id="html5-datetime-input"
                                                                                     name="penjadwalan_tambah" required />
                                                                             </div>
                                                                         </div>
@@ -296,7 +296,7 @@
                                             <div class="form-text">Waktu Pelaksanaan</div>
                                             <div class="row mb-3">
                                                 <div class="form-floating form-floating-outline mb-4">
-                                                    <input class="form-control" type="date" id="html5-date-input"
+                                                    <input class="form-control" type="datetime-local" id="html5-datetime-input"
                                                         name="penjadwalan_tambah" required />
                                                 </div>
                                             </div>

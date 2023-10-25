@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 
 class PenjadwalanController extends Controller
 {
-    function index()  
+    function index()
     {
         $penjadwalan = Penjadwalan::all();
         return view('penjadwalan/index', ['penjadwalans' => $penjadwalan]);
@@ -47,11 +47,10 @@ class PenjadwalanController extends Controller
         $user->name = $request->input('name');
         $user->jk = $request->input('jk');
         $user->role = $request->input('role');
-        if($request->password != null)
-        {
+        if ($request->password != null) {
             $user->password = Hash::make($request->password);
         }
-        
+
         $user->save();
         return redirect()->route('penjadwalan.index')->with('success', 'Penjadwalan berhasil Diubah!');
     }
@@ -63,4 +62,5 @@ class PenjadwalanController extends Controller
 
         return redirect()->route('penjadwalan.index')->with('success', 'Penjadwalan berhasil dihapus');
     }
+
 }

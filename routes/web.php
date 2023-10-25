@@ -36,7 +36,6 @@ Route::middleware(["signin"])->group(function () {
     Route::post('/penjadwalan/create', [PenjadwalanController::class, 'create'])->name('penjadwalan.create');
     Route::delete('/penjadwalan/delete/{id}', [PenjadwalanController::class, 'delete'])->name('penjadwalan.delete');
     Route::put('/penjadwalan/{id}/update', [PenjadwalanController::class, 'update'])->name('penjadwalan.update');
-
 });
 
 Route::get('/auth', [SessionController::class, 'index']);

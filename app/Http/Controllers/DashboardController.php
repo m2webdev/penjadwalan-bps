@@ -13,7 +13,7 @@ class DashboardController extends Controller
     function index()
     {
         $user = Auth::user();
-       
+
         if ($user->role === 'admin') {
             $laporan = [
                 'jumlah_pengguna' => User::count(),
@@ -22,12 +22,13 @@ class DashboardController extends Controller
                 'jumlah_peminjaman' => Penjadwalan::count(),
             ];
 
-        
+
             return view('dashboard.admin', ['laporan' => $laporan]);
-        }
-        else
-        {
-           return view('dashboard.user_index');
+        } else {
+
+            $penjadwalan = Penjadwalan::all();
+            $jadwal = Jadwal::all();
+            return view('dashboard.user_index', ['jadwal' => $jadwal, 'penjadwalan' => $penjadwalan, 'user' => $user]);
         }
     }
 }
