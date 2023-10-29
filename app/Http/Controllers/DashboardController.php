@@ -17,18 +17,17 @@ class DashboardController extends Controller
         if ($user->role === 'admin') {
             $laporan = [
                 'jumlah_pengguna' => User::count(),
-                'jumlah_mobil_tersedia' => Jadwal::count(),
-                'jumlah_mobil_tidak_tersedia' => Penjadwalan::count(),
-                'jumlah_peminjaman' => Penjadwalan::count(),
+                'jumlah_jadwal' => Jadwal::count(),
+                'jumlah_penjadwalan' => Penjadwalan::count(),
             ];
 
 
             return view('dashboard.admin', ['laporan' => $laporan]);
         } else {
-
             $penjadwalan = Penjadwalan::all();
             $jadwal = Jadwal::all();
-            return view('dashboard.user_index', ['jadwal' => $jadwal, 'penjadwalan' => $penjadwalan, 'user' => $user]);
+
+            return view('dashboard.user_index', ['jadwals' => $jadwal, 'penjadwalan' => $penjadwalan, 'user' => $user]);
         }
     }
 }

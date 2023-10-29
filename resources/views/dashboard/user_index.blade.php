@@ -3,9 +3,9 @@
 
 @section('content')
     <div class="tab-content p-0">
-        @foreach (App\Models\Jadwal::all() as $jadwal)
+        @foreach ($jadwals as $jadwal)
             <div class="tab-pane fade {{ $loop->iteration == 1 ? 'active show' : '' }}"
-                id="navs-tab-{{ $jadwal->type_jadwal }}" role="tabpanel">
+                id="navs-tab-{{ $jadwal->id }}" role="tabpanel">
                 <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
                     <label for="html5-date-input">Pilih Berdasarkan Waktu Pelaksanaan</label>
                     <input class="form-control date-input" type="date" id="date-{{ $jadwal->id }}"
@@ -14,8 +14,8 @@
 
                 <div class="card">
                     <div class="table-responsive text-nowrap">
-                        <table class="table">
-                            <thead>
+                        <table class="table" id="tables-{{$jadwal->id}}">
+                            <thead id="thead-{{$jadwal->id}}">
                                 <tr>
                                     <th>No.</th>
                                     <th>Waktu Pelaksanaan</th>
@@ -36,7 +36,7 @@
                                                     <img src="{{ asset('style/assets/img/avatars/' . ($item->jk === 'laki-laki' ? '5' : '6') . '.png') }}"
                                                         alt="Avatar" class="rounded-circle avatar avatar-xs pull-up"
                                                         title="{{ $item->name }}">
-                                                    {{ $item->name }}
+                                                    {{ App\Models\User::find($item->user_id)->name }}
                                                 </div>
                                             </td>
                                         </tr>

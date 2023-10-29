@@ -90,8 +90,8 @@
                             </div>
                         </div>
                         <div class="ms-3">
-                            <div class="small mb-1">Peminjaman Diproses</div>
-                            <h5 class="mb-0">{{ $laporan['jumlah_peminjaman'] }}</h5>
+                            <div class="small mb-1">Jumlah Penjadwalan</div>
+                            <h5 class="mb-0">{{ $laporan['jumlah_penjadwalan'] }}</h5>
                         </div>
                     </div>
                 </div>
@@ -103,7 +103,7 @@
                             </div>
                         </div>
                         <div class="ms-3">
-                            <div class="small mb-1">Pengguna</div>
+                            <div class="small mb-1">Jumlah Pengguna</div>
                             <h5 class="mb-0">{{ $laporan['jumlah_pengguna'] }}</h5>
                         </div>
                     </div>
@@ -111,29 +111,17 @@
                 <div class="col-md-3 col-6">
                     <div class="d-flex align-items-center">
                         <div class="avatar">
-                            <div class="avatar-initial bg-success rounded shadow">
-                                <i class="mdi mdi-car-back mdi-24px"></i>
+                            <div class="avatar-initial bg-primary rounded shadow">
+                                <i class="mdi mdi-application-outline mdi-24px"></i>
                             </div>
                         </div>
                         <div class="ms-3">
-                            <div class="small mb-1">Mobil Tersedia</div>
-                            <h5 class="mb-0">{{ $laporan['jumlah_mobil_tersedia'] }}</h5>
+                            <div class="small mb-1">Jumlah Jadwal</div>
+                            <h5 class="mb-0">{{ $laporan['jumlah_jadwal'] }}</h5>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-6">
-                    <div class="d-flex align-items-center">
-                        <div class="avatar">
-                            <div class="avatar-initial bg-danger rounded shadow">
-                                <i class="mdi mdi-car-back mdi-24px"></i>
-                            </div>
-                        </div>
-                        <div class="ms-3">
-                            <div class="small mb-1">Mobil Tidak Tersedia</div>
-                            <h5 class="mb-0">{{ $laporan['jumlah_mobil_tidak_tersedia'] }}</h5>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>

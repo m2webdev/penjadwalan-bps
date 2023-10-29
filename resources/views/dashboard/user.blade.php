@@ -68,7 +68,7 @@
                             @foreach (App\Models\Jadwal::all() as $jadwal)
                                 <li class="nav-item">
                                     <button type="button" class="nav-link {{$loop->iteration == 1? 'active': ''}}" role="tab" data-bs-toggle="tab"
-                                        data-bs-target="#navs-tab-{{$jadwal->type_jadwal}}" aria-controls="navs-tab-home"
+                                        data-bs-target="#navs-tab-{{$jadwal->id}}" aria-controls="navs-tab-home"
                                         aria-selected="true">
                                         {{$jadwal->type_jadwal}}
                                     </button>
