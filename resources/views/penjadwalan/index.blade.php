@@ -55,11 +55,13 @@
                             <div data-i18n="Account">Jadwal</div>
                         </a>
                     </li>
-                    <li class="menu-item active">
-                        <a href="{{ route('penjadwalan.index') }}" class="menu-link">
-                            <div data-i18n="Basic">Penjadwalan</div>
-                        </a>
-                    </li>
+                    @foreach (App\Models\Jadwal::all() as $jadwal)
+                        <li class="menu-item">
+                            <a href="{{ route('penjadwalan.jadwal', ['id' => $jadwal->id]) }}" class="menu-link">
+                                <div data-i18n="Basic">{{ $jadwal->type_jadwal }}</div>
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
             </li>
     </aside>
@@ -83,9 +85,9 @@
             </div>
         @endif
 
-        <h5 class="card-header">List Penjadwalan</h5>
+        <h5 class="card-header">List Penjadwalan {{App\Models\Jadwal::find($jadwal_id)->type_jadwal}}</h5>
         <button style="margin-left: 1%;" type="button" class="btn btn-primary" data-bs-toggle="modal"
-            data-bs-target="#modalCenter">+ Tambah Penjadwalan</button>
+            data-bs-target="#modalCenter">+ Tambah Penjadwalan {{App\Models\Jadwal::find($jadwal_id)->type_jadwal}}</button>
 
         <div class="table-responsive text-nowrap">
             <table class="table">
@@ -139,7 +141,7 @@
                                                             <div class="col-xl">
                                                                 <div class="card-body">
                                                                     <form
-                                                                        action="{{ route('penjadwalan.delete', ['id' => $penjadwalan->id]) }}"
+                                                                        action="{{ route('penjadwalan.delete',  ['id' => $penjadwalan->id, 'jadwal' => App\Models\Jadwal::find($jadwal_id)])  }}"
                                                                         method="POST">
                                                                         @csrf
                                                                         @method('DELETE')
@@ -179,23 +181,10 @@
                                                             <div class="col-xl">
                                                                 <div class="card-body">
                                                                     <form
-                                                                        action="{{ route('penjadwalan.update', ['id' => $penjadwalan->id]) }}"
+                                                                        action="{{ route('penjadwalan.update', ['id' => $penjadwalan->id, 'jadwal' => App\Models\Jadwal::find($jadwal_id)]) }}"
                                                                         method="POST">
                                                                         @csrf
                                                                         @method('PUT')
-                                                                        <div class="form-text">Tipe Jadwal</div>
-
-                                                                        <div
-                                                                            class="form-floating form-floating-outline mb-4">
-                                                                            <select id="basic-default-role"
-                                                                                class="form-select" name="jadwal">
-                                                                                @foreach (App\Models\Jadwal::all() as $jadwal)
-                                                                                    <option value="{{ $jadwal->id }}"
-                                                                                        {{ $jadwal->id === App\Models\Jadwal::find($penjadwalan->jadwal_id)->id ? 'selected' : '' }}>
-                                                                                        {{ $jadwal->type_jadwal }}</option>
-                                                                                @endforeach
-                                                                            </select>
-                                                                        </div>
 
                                                                         <div class="form-text">Nama Pelaksana</div>
                                                                         <div
@@ -214,7 +203,9 @@
                                                                         <div class="row mb-3">
                                                                             <div
                                                                                 class="form-floating form-floating-outline mb-4">
-                                                                                <input class="form-control" type="datetime-local" value={{$penjadwalan->tanggal_jadwal}}
+                                                                                <input class="form-control"
+                                                                                    type="datetime-local"
+                                                                                    value={{ $penjadwalan->tanggal_jadwal }}
                                                                                     id="html5-datetime-input"
                                                                                     name="penjadwalan_tambah" required />
                                                                             </div>
@@ -273,18 +264,9 @@
                             <div class="row">
                                 <div class="col-xl">
                                     <div class="card-body">
-                                        <form id="formCreateAccount" action="{{ route('penjadwalan.create') }}"
+                                        <form id="formCreateAccount" action="{{ route('penjadwalan.create', ['jadwal' => App\Models\Jadwal::find($jadwal_id)]) }}"
                                             method="POST">
                                             @csrf
-                                            <div class="form-text">Tipe Jadwal</div>
-                                            <div class="form-floating form-floating-outline mb-4">
-                                                <select id="basic-default-role" class="form-select" name="jadwal_tambah">
-                                                    @foreach (App\Models\Jadwal::all() as $jadwal)
-                                                        <option value="{{ $jadwal->id }}">{{ $jadwal->type_jadwal }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
                                             <div class="form-text">Nama Pelaksanaan</div>
                                             <div class="form-floating form-floating-outline mb-4">
                                                 <select id="basic-default-role" class="form-select" name="user_tambah">
@@ -296,8 +278,8 @@
                                             <div class="form-text">Waktu Pelaksanaan</div>
                                             <div class="row mb-3">
                                                 <div class="form-floating form-floating-outline mb-4">
-                                                    <input class="form-control" type="datetime-local" id="html5-datetime-input"
-                                                        name="penjadwalan_tambah" required />
+                                                    <input class="form-control" type="datetime-local"
+                                                        id="html5-datetime-input" name="penjadwalan_tambah" required />
                                                 </div>
                                             </div>
                                             <div class="mb-4"></div>

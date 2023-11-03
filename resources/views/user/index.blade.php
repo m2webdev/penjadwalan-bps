@@ -55,11 +55,13 @@
                             <div data-i18n="Account">Jadwal</div>
                         </a>
                     </li>
-                    <li class="menu-item">
-                        <a href="{{ route('penjadwalan.index') }}" class="menu-link">
-                            <div data-i18n="Basic">Penjadwalan</div>
-                        </a>
-                    </li>
+                    @foreach (App\Models\Jadwal::all() as $jadwal)
+                        <li class="menu-item">
+                            <a href="{{ route('penjadwalan.jadwal', ['id' => $jadwal->id]) }}" class="menu-link">
+                                <div data-i18n="Basic">{{ $jadwal->type_jadwal }}</div>
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
             </li>
     </aside>
@@ -183,14 +185,16 @@
                                                         <div class="row">
                                                             <div class="col-xl">
                                                                 <div class="card-body">
-                                                                    <form action="{{ route('akun.update', ['id' => $user->id]) }}" method="POST">
+                                                                    <form
+                                                                        action="{{ route('akun.update', ['id' => $user->id]) }}"
+                                                                        method="POST">
                                                                         @csrf
                                                                         @method('PUT')
                                                                         <div
                                                                             class="form-floating form-floating-outline mb-4">
                                                                             <input type="text" class="form-control"
-                                                                                id="basic-default-fullname"
-                                                                                name="name" placeholder="John Doe"
+                                                                                id="basic-default-fullname" name="name"
+                                                                                placeholder="John Doe"
                                                                                 value={{ $user->name }} />
                                                                             <label for="basic-default-fullname">Nama
                                                                                 Lengkap</label>
@@ -229,8 +233,7 @@
                                                                                         class="form-control"
                                                                                         name="password"
                                                                                         placeholder="********"
-                                                                                        aria-describedby="password"
-                                                                                         >
+                                                                                        aria-describedby="password">
                                                                                     <label for="password">Password</label>
                                                                                 </div>
                                                                                 <span
@@ -247,7 +250,8 @@
                                                                                 Tutup
                                                                             </button>
                                                                             <button type="submit"
-                                                                                class="btn btn-primary">Simpan Perubahan</button>
+                                                                                class="btn btn-primary">Simpan
+                                                                                Perubahan</button>
                                                                         </div>
                                                                     </form>
                                                                     <div id="success-warning"
@@ -383,7 +387,7 @@
                                                     return false;
                                                 }
 
-                                           
+
                                                 return true;
                                             }
                                         </script>

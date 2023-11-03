@@ -55,11 +55,13 @@
                             <div data-i18n="Account">Jadwal</div>
                         </a>
                     </li>
-                    <li class="menu-item">
-                        <a href="{{ route('penjadwalan.index') }}" class="menu-link">
-                            <div data-i18n="Basic">Penjadwalan</div>
-                        </a>
-                    </li>
+                    @foreach (App\Models\Jadwal::all() as $jadwal)
+                        <li class="menu-item">
+                            <a href="{{ route('penjadwalan.jadwal', ['id' => $jadwal->id]) }}" class="menu-link">
+                                <div data-i18n="Basic">{{ $jadwal->type_jadwal }}</div>
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
             </li>
     </aside>
@@ -174,16 +176,19 @@
                                                         <div class="row">
                                                             <div class="col-xl">
                                                                 <div class="card-body">
-                                                                    <form action="{{ route('jadwal.update', ['id' => $jadwal->id]) }}" method="POST">
+                                                                    <form
+                                                                        action="{{ route('jadwal.update', ['id' => $jadwal->id]) }}"
+                                                                        method="POST">
                                                                         @csrf
                                                                         @method('PUT')
                                                                         <div
                                                                             class="form-floating form-floating-outline mb-4">
                                                                             <input type="text" class="form-control"
-                                                                                id="basic-default-fullname"
-                                                                                name="jadwal" placeholder="John Doe"
+                                                                                id="basic-default-fullname" name="jadwal"
+                                                                                placeholder="John Doe"
                                                                                 value={{ $jadwal->type_jadwal }} />
-                                                                            <label for="basic-default-fullname">Type Jadwal</label>
+                                                                            <label for="basic-default-fullname">Type
+                                                                                Jadwal</label>
                                                                         </div>
                                                                         <div class="mb-4"></div>
 
@@ -194,7 +199,8 @@
                                                                                 Tutup
                                                                             </button>
                                                                             <button type="submit"
-                                                                                class="btn btn-primary">Simpan Perubahan</button>
+                                                                                class="btn btn-primary">Simpan
+                                                                                Perubahan</button>
                                                                         </div>
                                                                     </form>
                                                                     <div id="success-warning"
@@ -236,8 +242,8 @@
                             <div class="row">
                                 <div class="col-xl">
                                     <div class="card-body">
-                                        <form  id="formCreateAccount"
-                                            action="{{ route('jadwal.create') }}" method="POST">
+                                        <form id="formCreateAccount" action="{{ route('jadwal.create') }}"
+                                            method="POST">
                                             @csrf
                                             <div class="form-floating form-floating-outline mb-4">
                                                 <input type="text" class="form-control" id="basic-default-fullname"

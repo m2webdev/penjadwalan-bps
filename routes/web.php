@@ -33,9 +33,10 @@ Route::middleware(["signin"])->group(function () {
     Route::put('/jadwal/{id}/update', [JadwalController::class, 'update'])->name('jadwal.update');
 
     Route::get('/penjadwalan', [PenjadwalanController::class, 'index'])->name('penjadwalan.index');
-    Route::post('/penjadwalan/create', [PenjadwalanController::class, 'create'])->name('penjadwalan.create');
-    Route::delete('/penjadwalan/delete/{id}', [PenjadwalanController::class, 'delete'])->name('penjadwalan.delete');
-    Route::put('/penjadwalan/{id}/update', [PenjadwalanController::class, 'update'])->name('penjadwalan.update');
+    Route::get('/penjadwalan/{id}', [PenjadwalanController::class, 'index'])->name('penjadwalan.jadwal');
+    Route::post('/penjadwalan/create/{jadwal}', [PenjadwalanController::class, 'create'])->name('penjadwalan.create');
+    Route::delete('/penjadwalan/delete/{id}/{jadwal}', [PenjadwalanController::class, 'delete'])->name('penjadwalan.delete');
+    Route::put('/penjadwalan/{id}/update/{jadwal}', [PenjadwalanController::class, 'update'])->name('penjadwalan.update');
 });
 
 Route::get('/auth', [SessionController::class, 'index']);

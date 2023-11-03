@@ -62,12 +62,14 @@
                             <div data-i18n="Account">Jadwal</div>
                         </a>
                     </li>
-                    <li class="menu-item">
-                        <a href="{{ route('penjadwalan.index') }}" class="menu-link">
-                            <div data-i18n="Basic">Penjadwalan</div>
-                        </a>
-                    </li>
-                   
+                    @foreach (App\Models\Jadwal::all() as $jadwal)
+                        <li class="menu-item">
+                            <a href="{{ route('penjadwalan.jadwal', ['id' => $jadwal->id]) }}" class="menu-link">
+                                <div data-i18n="Basic">{{ $jadwal->type_jadwal }}</div>
+                            </a>
+                        </li>
+                    @endforeach
+
                 </ul>
             </li>
     </aside>
