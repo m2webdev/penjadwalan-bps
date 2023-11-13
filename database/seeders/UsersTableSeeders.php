@@ -22,6 +22,7 @@ class UsersTableSeeders extends Seeder
             'role' => 'admin',
             'password' => Hash::make('12345'),
             'email_verified_at' => now(),
+            'agama' => 'islam',
             'remember_token' => Str::random(10),
         ]);
 
@@ -30,6 +31,7 @@ class UsersTableSeeders extends Seeder
             'username' => 'pengguna',
             'jk' => 'laki-laki',
             'role' => 'pengguna',
+            'agama' => 'islam',
             'password' => Hash::make('12345'),
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),

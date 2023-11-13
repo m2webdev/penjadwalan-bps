@@ -23,6 +23,7 @@ class UserController extends Controller
             'username' => 'required|unique:users',
             'role_tambah' => 'required',
             'password_tambah' => 'required',
+            'agama_tambah' => 'required',
         ]);
 
 
@@ -33,6 +34,7 @@ class UserController extends Controller
             'role' => $request->input('role_tambah'),
             'username' => $request->input('username_tambah'),
             'password' => Hash::make($request->input('password_tambah')),
+            'agama' => $request->input('agama_tambah'),
 
         ]);
 
@@ -45,6 +47,7 @@ class UserController extends Controller
             'name' => 'required',
             'jk' => 'required',
             'role' => 'required',
+            'agama' => 'required',
         ]);
 
         $user = User::find($id);
@@ -55,6 +58,7 @@ class UserController extends Controller
         $user->name = $request->input('name');
         $user->jk = $request->input('jk');
         $user->role = $request->input('role');
+        $user->agama = $request->input('agama');
         if($request->password != null)
         {
             $user->password = Hash::make($request->password);

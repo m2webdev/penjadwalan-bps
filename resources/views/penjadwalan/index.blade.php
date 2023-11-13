@@ -191,7 +191,7 @@
                                                                             class="form-floating form-floating-outline mb-4">
                                                                             <select id="basic-default-role"
                                                                                 class="form-select" name="user">
-                                                                                @foreach (App\Models\User::all() as $user)
+                                                                                @foreach ($pengguna as $user)
                                                                                     <option value="{{ $user->id }}"
                                                                                         {{ $user->id === App\Models\User::find($penjadwalan->user_id)->id ? 'selected' : '' }}>
                                                                                         {{ $user->name }}</option>
@@ -270,7 +270,7 @@
                                             <div class="form-text">Nama Pelaksanaan</div>
                                             <div class="form-floating form-floating-outline mb-4">
                                                 <select id="basic-default-role" class="form-select" name="user_tambah">
-                                                    @foreach (App\Models\User::where('role', 'pengguna')->get() as $user)
+                                                    @foreach ($pengguna as $user)
                                                         <option value="{{ $user->id }}">{{ $user->name }}</option>
                                                     @endforeach
                                                 </select>

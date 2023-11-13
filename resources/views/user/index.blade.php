@@ -108,6 +108,7 @@
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->jk }}</td>
                             <td>{{ $user->username }}</td>
+                            <td>{{ $user->agama }}</td>
                             <td>
                                 <span
                                     class="{{ $user->role === 'admin' ? 'badge rounded-pill bg-label-info me-1' : 'badge rounded-pill bg-label-success me-1' }}">{{ $user->role }}</span>
@@ -198,6 +199,17 @@
                                                                                 value={{ $user->name }} />
                                                                             <label for="basic-default-fullname">Nama
                                                                                 Lengkap</label>
+                                                                        </div>
+                                                                        <div class="form-text">Agama</div>
+                                                                        <div class="form-floating form-floating-outline mb-4">
+                                                                            <select id="basic-default-role" class="form-select" name="agama">
+                                                                                <option value="islam" {{ $user->agama === 'islam' ? 'selected' : '' }}>islam</option>
+                                                                                <option value="kristen" {{ $user->agama === 'kristen' ? 'selected' : '' }}>kristen</option>
+                                                                                <option value="katolik" {{ $user->agama === 'katolik' ? 'selected' : '' }}>katolik</option>
+                                                                                <option value="hindu" {{ $user->agama === 'hindu' ? 'selected' : '' }}>hindu</option>
+                                                                                <option value="budha" {{ $user->agama === 'budha' ? 'selected' : '' }}>budha</option>
+                                                                                <option value="konghucu" {{ $user->agama === 'konghucu' ? 'selected' : '' }}>konghucu</option>
+                                                                            </select>
                                                                         </div>
                                                                         <div
                                                                             class="form-floating form-floating-outline mb-4">
@@ -325,6 +337,17 @@
                                                 <input type="text" class="form-control" id="basic-default-fullname"
                                                     name="fullname_tambah" placeholder="John Doe" />
                                                 <label for="basic-default-fullname">Nama Lengkap</label>
+                                            </div>
+                                            <div class="form-text">Agama</div>
+                                            <div class="form-floating form-floating-outline mb-4">
+                                                <select id="basic-default-role" class="form-select" name="agama_tambah">
+                                                    <option value="islam">islam</option>
+                                                    <option value="kristen">kristen</option>
+                                                    <option value="katolik">katolik</option>
+                                                    <option value="kristen">hindu</option>
+                                                    <option value="kristen">budha</option>
+                                                    <option value="kristen">konghucu</option>
+                                                </select>
                                             </div>
                                             <div class="form-floating form-floating-outline mb-4">
                                                 <select id="basic-default-role" class="form-select" name="jk_tambah">

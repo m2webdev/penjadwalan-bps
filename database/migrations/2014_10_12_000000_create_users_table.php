@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('username');
+            $table->string('agama');
             $table->string('email')->default('peminjaman_mobil@example.com');
             $table->timestamp('email_verified_at')->nullable();
             $table->enum('role', ['admin', 'pengguna'])->default('pengguna');

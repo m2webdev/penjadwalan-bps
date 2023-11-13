@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Jadwal;
 use App\Models\Penjadwalan;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -14,7 +15,13 @@ class PenjadwalanController extends Controller
         $id = $request->id;
         $jadwal = Jadwal::find($id);
         $penjadwalan = Penjadwalan::where('jadwal_id', $id)->get();
-        return view('penjadwalan/index', ['penjadwalans' => $penjadwalan, 'jadwal_id' => $jadwal->id]);
+        if (Jadwal::find($request->id)->type_jadwal == 'adzan' || Jadwal::find($request->id)->type_jadwal == 'Imam Sholat') {
+            $pengguna = User::where('agama', 'islam')->where('role', 'pengguna')->where('jk', 'laki-laki')->get();
+        }else {
+            $pengguna = User::where('role', 'pengguna')->where('jk', 'laki-laki')->get();
+        }
+
+        return view('penjadwalan/index', ['penjadwalans' => $penjadwalan, 'jadwal_id' => $jadwal->id, 'pengguna' => $pengguna]);
     }
 
     function create(Request $request)
