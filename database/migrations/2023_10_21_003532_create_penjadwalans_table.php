@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id'); 
             $table->unsignedBigInteger('jadwal_id'); 
-            $table->dateTime('tanggal_jadwal');
+            $table->dateTime('tanggal_jadwal')->nullable();
+            $table->integer('urutan');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('jadwal_id')->references('id')->on('jadwals');
             $table->timestamps();

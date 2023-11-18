@@ -18,27 +18,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(["signin"])->group(function () {
+Route::middleware('jadwal')->group(function() {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/auth/logout', [SessionController::class, 'logout'])->name('logout');
-
-    Route::get('/account', [UserController::class, 'index'])->name('akun.index');
-    Route::post('/account/create', [UserController::class, 'create'])->name('akun.create');
-    Route::delete('/account/delete/{id}', [UserController::class, 'delete'])->name('akun.delete');
-    Route::put('/account/{id}/update', [UserController::class, 'update'])->name('akun.update');
-
-    Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwal.index');
-    Route::post('/jadwal/create', [JadwalController::class, 'create'])->name('jadwal.create');
-    Route::delete('/jadwal/delete/{id}', [JadwalController::class, 'delete'])->name('jadwal.delete');
-    Route::put('/jadwal/{id}/update', [JadwalController::class, 'update'])->name('jadwal.update');
-
-    Route::get('/penjadwalan', [PenjadwalanController::class, 'index'])->name('penjadwalan.index');
-    Route::get('/penjadwalan/{id}', [PenjadwalanController::class, 'index'])->name('penjadwalan.jadwal');
-    Route::post('/penjadwalan/create/{jadwal}', [PenjadwalanController::class, 'create'])->name('penjadwalan.create');
-    Route::delete('/penjadwalan/delete/{id}/{jadwal}', [PenjadwalanController::class, 'delete'])->name('penjadwalan.delete');
-    Route::put('/penjadwalan/{id}/update/{jadwal}', [PenjadwalanController::class, 'update'])->name('penjadwalan.update');
+    Route::middleware(["signin"])->group(function () {
+        Route::get('/auth/logout', [SessionController::class, 'logout'])->name('logout');
+    
+        Route::get('/account', [UserController::class, 'index'])->name('akun.index');
+        Route::post('/account/create', [UserController::class, 'create'])->name('akun.create');
+        Route::delete('/account/delete/{id}', [UserController::class, 'delete'])->name('akun.delete');
+        Route::put('/account/{id}/update', [UserController::class, 'update'])->name('akun.update');
+    
+        Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwal.index');
+        Route::post('/jadwal/create', [JadwalController::class, 'create'])->name('jadwal.create');
+        Route::delete('/jadwal/delete/{id}', [JadwalController::class, 'delete'])->name('jadwal.delete');
+        Route::put('/jadwal/{id}/update', [JadwalController::class, 'update'])->name('jadwal.update');
+    
+        Route::get('/penjadwalan', [PenjadwalanController::class, 'index'])->name('penjadwalan.index');
+        Route::get('/penjadwalan/{id}', [PenjadwalanController::class, 'index'])->name('penjadwalan.jadwal');
+        Route::post('/penjadwalan/create/{jadwal}', [PenjadwalanController::class, 'create'])->name('penjadwalan.create');
+        Route::delete('/penjadwalan/delete/{id}/{jadwal}', [PenjadwalanController::class, 'delete'])->name('penjadwalan.delete');
+        Route::put('/penjadwalan/{id}/update/{jadwal}', [PenjadwalanController::class, 'update'])->name('penjadwalan.update');
+    });
+    
+    Route::get('/auth', [SessionController::class, 'index'])->name('index.login');
+    Route::post('/auth/login', [SessionController::class, 'login'])->name('login');
+    Route::post('/auth/forget', [SessionController::class, 'forget'])->name('forget');
 });
-
-Route::get('/auth', [SessionController::class, 'index']);
-Route::post('/auth/login', [SessionController::class, 'login'])->name('login');
-Route::post('/auth/forget', [SessionController::class, 'forget'])->name('forget');

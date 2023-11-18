@@ -14,7 +14,7 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
 
-        if ($user->role === 'admin') {
+        if (auth()->check() && $user->role === 'admin') {
             $laporan = [
                 'jumlah_pengguna' => User::count(),
                 'jumlah_jadwal' => Jadwal::count(),

@@ -23,24 +23,22 @@
                                 </tr>
                             </thead>
                             <tbody class="table-border-bottom-0" id="jadwal-table-{{ $jadwal->id }}">
-                                @foreach ($penjadwalan as $item)
-                                    @if ($item->jadwal_id == $jadwal->id)
-                                        <tr>
-                                            <td>
-                                                {{ $loop->iteration }}
-                                            </td>
-                                            <td>{{ $item->tanggal_jadwal }}</td>
-                                            <td>
-                                                <div data-bs-toggle="tooltip" data-popup="tooltip-custom"
-                                                    data-bs-placement="top">
-                                                    <img src="{{ asset('style/assets/img/avatars/' . ($item->jk === 'laki-laki' ? '5' : '6') . '.png') }}"
-                                                        alt="Avatar" class="rounded-circle avatar avatar-xs pull-up"
-                                                        title="{{ $item->name }}">
-                                                    {{ App\Models\User::find($item->user_id)->name }}
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endif
+                                @foreach (\App\Models\Penjadwalan::where('jadwal_id', $jadwal->id)->orderBy('urutan')->get() as $item)
+                                    <tr>
+                                        <td>
+                                            {{ $loop->iteration }}
+                                        </td>
+                                        <td>{{ $item->tanggal_jadwal ? Carbon\Carbon::parse($item->tanggal_jadwal)->translatedFormat('l, d F Y') : '-' }}</td>
+                                        <td>
+                                            <div data-bs-toggle="tooltip" data-popup="tooltip-custom"
+                                                data-bs-placement="top">
+                                                <img src="{{ asset('style/assets/img/avatars/' . ($item->jk === 'laki-laki' ? '5' : '6') . '.png') }}"
+                                                    alt="Avatar" class="rounded-circle avatar avatar-xs pull-up"
+                                                    title="{{ $item->name }}">
+                                                {{ App\Models\User::find($item->user_id)->name }}
+                                            </div>
+                                        </td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>

@@ -5,36 +5,34 @@ namespace App\Http\Controllers;
 use App\Models\Jadwal;
 use App\Models\Penjadwalan;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class PenjadwalanController extends Controller
 {
     function index(Request $request)
     {
         $id = $request->id;
-        $jadwal = Jadwal::find($id);
-        $penjadwalan = Penjadwalan::where('jadwal_id', $id)->get();
-        if (Jadwal::find($request->id)->type_jadwal == 'adzan' || Jadwal::find($request->id)->type_jadwal == 'Imam Sholat') {
-            $pengguna = User::where('agama', 'islam')->where('role', 'pengguna')->where('jk', 'laki-laki')->get();
-        }else {
-            $pengguna = User::where('role', 'pengguna')->where('jk', 'laki-laki')->get();
-        }
-
-        return view('penjadwalan/index', ['penjadwalans' => $penjadwalan, 'jadwal_id' => $jadwal->id, 'pengguna' => $pengguna]);
+        return view('penjadwalan/index', [
+            'id' => $id
+        ]);
     }
 
     function create(Request $request)
     {
         $request->validate([
             'user_tambah' => 'required',
-            'penjadwalan_tambah' => 'required',
         ]);
+
+        $lastJadwal = Penjadwalan::where('jadwal_id', $request->jadwal)->orderBy('urutan', 'DESC')->first(); 
+        $urutan = $lastJadwal !== null ? $lastJadwal->urutan + 1 : 1;
+        $tanggal = $lastJadwal!== null && $lastJadwal->tanggal_jadwal !== null ? Carbon::parse($lastJadwal->tanggal_jadwal)->addDay() : null;
 
         Penjadwalan::create([
             'user_id' => $request->input('user_tambah'),
             'jadwal_id' => $request->jadwal,
-            'tanggal_jadwal' => $request->input('penjadwalan_tambah'),
+            'urutan' => $urutan,
+            'tanggal_jadwal' => $tanggal
         ]);
 
         return redirect()->route('penjadwalan.index', ['id' => $request->jadwal])->with('success', 'Penjadwalan berhasil dibuat!');

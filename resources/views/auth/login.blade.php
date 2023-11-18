@@ -57,7 +57,7 @@
                 <div class="card p-2">
                     <!-- Logo -->
                     <div class="app-brand justify-content-center mt-5">
-                        <a href="" class="app-brand-link gap-2">
+                        <a href="{{ route('dashboard') }}" class="app-brand-link gap-2">
                             <span class="app-brand-logo demo">
                                 <span style="color: #9055fd">
                                     <img style="width: 250px; height: 50px;" src="{{ asset('style/assets/img/logo.png') }}"
