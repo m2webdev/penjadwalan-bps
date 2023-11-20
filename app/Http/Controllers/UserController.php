@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     function index()  
     {
-        $users = User::all();
+        $users = User::where('role', 'admin')->orWhere('role', 'pengguna')->latest()->get();
         return view('user/index', ['users' => $users]);
     }
 

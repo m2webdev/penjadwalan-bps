@@ -43,7 +43,7 @@
 
                 </ul>
             </li>
-            <li class="menu-item ">
+            <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons mdi mdi-application-outline"></i>
                     <div data-i18n="Authentications">Pengaturan Jadwal</div>
@@ -56,14 +56,14 @@
                     </li>
                 </ul>
             </li>
-            <li class="menu-item">
+            <li class="menu-item open">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons mdi mdi-calendar-clock-outline"></i>
                     <div data-i18n="Authentications">Jadwal</div>
                 </a>
                 <ul class="menu-sub">
                     @foreach (App\Models\Jadwal::all() as $jadwal)
-                        <li class="menu-item">
+                        <li class="menu-item {{ $id == $jadwal->id ? 'active' : '' }}">
                             <a href="{{ route('penjadwalan.jadwal', ['id' => $jadwal->id]) }}" class="menu-link">
                                 <div data-i18n="Basic">{{ $jadwal->type_jadwal }}</div>
                             </a>

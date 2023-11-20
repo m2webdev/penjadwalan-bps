@@ -118,7 +118,7 @@
                             <td>{{ $user->agama }}</td>
                             <td>
                                 <span
-                                    class="{{ $user->role === 'admin' ? 'badge rounded-pill bg-label-info me-1' : 'badge rounded-pill bg-label-success me-1' }}">{{ $user->role }}</span>
+                                    class="{{ $user->role === 'super-admin' ? 'badge rounded-pill bg-primary me-1' : ($user->role === 'admin' ? 'badge rounded-pill bg-label-info me-1' : 'badge rounded-pill bg-label-success me-1') }}">{{ $user->role }}</span>
                             </td>
                             <td>
                                 <div class="dropdown">

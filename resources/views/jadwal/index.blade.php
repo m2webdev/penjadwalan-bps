@@ -43,13 +43,13 @@
 
                 </ul>
             </li>
-            <li class="menu-item ">
+            <li class="menu-item open">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons mdi mdi-application-outline"></i>
                     <div data-i18n="Authentications">Pengaturan Jadwal</div>
                 </a>
                 <ul class="menu-sub">
-                    <li class="menu-item">
+                    <li class="menu-item active">
                         <a href="{{ route('jadwal.index') }}" class="menu-link">
                             <div data-i18n="Account">Jadwal</div>
                         </a>
