@@ -71,6 +71,12 @@
                     @endforeach
                 </ul>
             </li>
+            <li class="menu-item">
+                <a href="{{ route('laporan.index') }}" class="menu-link">
+                    <i class="menu-icon tf-icons mdi mdi-file-document-outline"></i>
+                    <div data-i18n="Authentications">Laporan</div>
+                </a>
+            </li>
     </aside>
 @endsection
 

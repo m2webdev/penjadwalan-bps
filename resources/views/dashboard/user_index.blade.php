@@ -2,19 +2,18 @@
 @section('title', 'dashboard')
 
 @section('content')
-    <div class="tab-content p-0">
-        @foreach ($jadwals as $jadwal)
-            <div class="tab-pane fade {{ $loop->iteration == 1 ? 'active show' : '' }}"
-                id="navs-tab-{{ $jadwal->id }}" role="tabpanel">
-                <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
-                    <label for="html5-date-input">Pilih Berdasarkan Waktu Pelaksanaan</label>
-                    <input class="form-control date-input" type="date" id="date-{{ $jadwal->id }}"
-                        data-jadwal-id="{{ $jadwal->id }}" />
-                </div>
-
-                <div class="card">
+    <div class="card content-pane">
+        <div class="card-body">
+            @foreach ($jadwals as $jadwal)
+                <div class="tab-pane fade {{ $loop->iteration == 1 ? 'active show' : '' }}"
+                    id="navs-tab-{{ $jadwal->id }}" role="tabpanel">
+                    <div class=" mb-5">
+                        <label for="date-{{ $jadwal->id }}">Pilih Berdasarkan Waktu Pelaksanaan</label>
+                        <input class="form-control date-input" type="date" id="date-{{ $jadwal->id }}"
+                            data-jadwal-id="{{ $jadwal->id }}" />
+                    </div>
                     <div class="table-responsive text-nowrap">
-                        <table class="table" id="tables-{{$jadwal->id}}">
+                        <table class="table border border-2 table-striped" style="--bs-table-striped-bg: #55A5CC; --bs-table-striped-color: white; --bs-table-border-color: #55A5CC;" id="tables-{{$jadwal->id}}">
                             <thead id="thead-{{$jadwal->id}}">
                                 <tr>
                                     <th>No.</th>
@@ -44,31 +43,27 @@
                         </table>
                     </div>
                 </div>
-            </div>
-            @push('js')
-                <script>
-                    $(document).ready(function() {
-                        $("#date-{{ $jadwal->id }}").on("change", function() {
-                            var selectedDate = $(this).val();
-                            var jadwalId = $(this).data("jadwal-id");
-
-                            $("#jadwal-table-" + jadwalId + " tr").hide();
-
-                            $("#jadwal-table-" + jadwalId + " tr").each(function() {
-                                var rowDate = $(this).find("td:nth-child(2)").text().split(" ")[
-                                0]; // Get the date part only
-                                if (rowDate === selectedDate) {
-                                    $(this).show();
-                                }
+                @push('js')
+                    <script>
+                        $(document).ready(function() {
+                            $("#date-{{ $jadwal->id }}").on("change", function() {
+                                var selectedDate = $(this).val();
+                                var jadwalId = $(this).data("jadwal-id");
+    
+                                $("#jadwal-table-" + jadwalId + " tr").hide();
+    
+                                $("#jadwal-table-" + jadwalId + " tr").each(function() {
+                                    var rowDate = $(this).find("td:nth-child(2)").text().split(" ")[
+                                    0]; // Get the date part only
+                                    if (rowDate === selectedDate) {
+                                        $(this).show();
+                                    }
+                                });
                             });
                         });
-                    });
-                </script>
-            @endpush
-        @endforeach
+                    </script>
+                @endpush
+            @endforeach
+        </div>
     </div>
-
-    <!-- Add this script after including jQuery -->
-
-
 @endsection

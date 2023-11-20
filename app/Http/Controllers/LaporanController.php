@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\App;
 
 class LaporanController extends Controller
 {   
+
+    public function index()
+    {
+        return response()->view('laporan.index');
+    }
+
     public function download()
     {
         $penjadwalan = Penjadwalan::all();

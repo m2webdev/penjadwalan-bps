@@ -1,6 +1,5 @@
 @extends('dashboard.index')
-@section('title', 'Penjadwalan')
-
+@section('title', 'Dashboard')
 @section('aside')
     <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
         <div class="app-brand demo">
@@ -43,7 +42,7 @@
 
                 </ul>
             </li>
-            <li class="menu-item">
+            <li class="menu-item ">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons mdi mdi-application-outline"></i>
                     <div data-i18n="Authentications">Pengaturan Jadwal</div>
@@ -56,14 +55,14 @@
                     </li>
                 </ul>
             </li>
-            <li class="menu-item open">
+            <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons mdi mdi-calendar-clock-outline"></i>
                     <div data-i18n="Authentications">Jadwal</div>
                 </a>
                 <ul class="menu-sub">
                     @foreach (App\Models\Jadwal::all() as $jadwal)
-                        <li class="menu-item {{ $id == $jadwal->id ? 'active' : '' }}">
+                        <li class="menu-item">
                             <a href="{{ route('penjadwalan.jadwal', ['id' => $jadwal->id]) }}" class="menu-link">
                                 <div data-i18n="Basic">{{ $jadwal->type_jadwal }}</div>
                             </a>
@@ -71,7 +70,7 @@
                     @endforeach
                 </ul>
             </li>
-            <li class="menu-item">
+            <li class="menu-item active">
                 <a href="{{ route('laporan.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons mdi mdi-file-document-outline"></i>
                     <div data-i18n="Authentications">Laporan</div>
@@ -81,5 +80,12 @@
 @endsection
 
 @section('content')
-    @livewire('penjadwalan', ['id' => $id])
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">Laporan Penjadwalan Karyawan</h5>
+        </div>
+        <div class="card-body">
+            
+        </div>
+    </div>
 @endsection
