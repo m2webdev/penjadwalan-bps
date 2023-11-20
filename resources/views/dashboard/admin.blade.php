@@ -28,7 +28,6 @@
                 <a href="{{ route('dashboard') }}" class="menu-link">
                     <i class="menu-icon tf-icons mdi mdi-home-outline"></i>
                     <div data-i18n="Dashboards">Dashboard</div>
-                    <div class="badge bg-danger rounded-pill ms-auto">5</div>
                 </a>
 
             <li class="menu-header small text-uppercase">
@@ -94,7 +93,7 @@
                 <div class="col-md-3 col-6">
                     <div class="d-flex align-items-center">
                         <div class="avatar">
-                            <div class="avatar-initial bg-primary rounded shadow">
+                            <div class="avatar-initial rounded shadow">
                                 <i class="mdi mdi-trending-up mdi-24px"></i>
                             </div>
                         </div>
@@ -120,7 +119,7 @@
                 <div class="col-md-3 col-6">
                     <div class="d-flex align-items-center">
                         <div class="avatar">
-                            <div class="avatar-initial bg-primary rounded shadow">
+                            <div class="avatar-initial rounded shadow">
                                 <i class="mdi mdi-application-outline mdi-24px"></i>
                             </div>
                         </div>

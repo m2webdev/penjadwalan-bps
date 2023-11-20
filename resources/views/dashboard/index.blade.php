@@ -102,6 +102,12 @@
                                         <div class="dropdown-divider my-1"></div>
                                     </li>
                                     <li>
+                                        <a href="{{ route('profil') }}" class="dropdown-item">
+                                            <i class="mdi mdi-account-cog-outline me-1 mdi-20px"></i>
+                                            <span class="align-middle">Akun</span>
+                                        </a>
+                                    </li>
+                                    <li>
                                         <div class="dropdown-divider my-1"></div>
                                     </li>
                                     <li>

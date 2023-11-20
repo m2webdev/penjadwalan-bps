@@ -21,7 +21,6 @@
                 <a href="{{ route('dashboard') }}" class="menu-link">
                     <i class="menu-icon tf-icons mdi mdi-home-outline"></i>
                     <div data-i18n="Dashboards">Dashboard</div>
-                    <div class="badge bg-danger rounded-pill ms-auto">5</div>
                 </a>
 
             <li class="menu-header small text-uppercase">
@@ -94,7 +93,7 @@
         @endif
 
         <h5 class="card-header">List Jadwal</h5>
-        <button style="margin-left: 1%;" type="button" class="btn btn-primary" data-bs-toggle="modal"
+        <button type="button" class="btn btn-primary mx-3" data-bs-toggle="modal"
             data-bs-target="#modalCenter">+ Tambah Jadwal</button>
 
         <div class="table-responsive text-nowrap">

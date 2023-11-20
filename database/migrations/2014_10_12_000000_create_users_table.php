@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('agama');
             $table->string('email')->default('peminjaman_mobil@example.com');
             $table->timestamp('email_verified_at')->nullable();
-            $table->enum('role', ['admin', 'pengguna'])->default('pengguna');
+            $table->enum('role', ['super-admin', 'admin', 'pengguna'])->default('pengguna');
             $table->enum('jk', ['laki-laki', 'perempuan'])->default('laki-laki');
             $table->string('password');
             $table->rememberToken();

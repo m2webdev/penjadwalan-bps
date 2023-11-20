@@ -24,6 +24,7 @@ body{
 
 .app-brand-text.demo {
   font-size: 1.25rem;
+  color: white;
 }
 
 /* ! For .layout-navbar-fixed added fix padding top tpo .layout-page */
@@ -83,6 +84,10 @@ body{
   display: block !important;
 }
 
+.w-sm-50 {
+  width: 50%;
+}
+
 /* Dropdown buttons going out of small screens */
 @media (max-width: 576px) {
   #dropdown-variation-demo .btn-group .text-truncate {
@@ -93,6 +98,10 @@ body{
     position: absolute;
     top: 45%;
     right: 0.65rem;
+  }
+
+  .w-sm-50 {
+    width: 100%;
   }
 }
 /*

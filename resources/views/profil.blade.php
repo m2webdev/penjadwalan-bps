@@ -1,6 +1,11 @@
 @extends('dashboard.index')
-@section('title', 'Penjadwalan')
-
+@section('title', 'Dashboard')
+@section('user')
+    <div class="flex-grow-1">
+        <h6 class="mb-0">John Doe</h6>
+        <small class="text-muted">Admin</small>
+    </div>
+@endsection
 @section('aside')
     <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
         <div class="app-brand demo">
@@ -75,5 +80,54 @@
 @endsection
 
 @section('content')
-    @livewire('penjadwalan', ['id' => $id])
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">Pengaturan Akun</h5>
+        </div>
+        <div class="card-body">
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible mb-3" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+            <form action="{{ route('profil.username') }}" method="POST">
+                @csrf
+                <div class="mb-3 w-sm-50">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" value="{{ old('username') ? old('username') : auth()->user()->username}}">
+                    @error('username')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <button class="btn btn-sm btn-primary" type="submit">Simpan</button>
+            </form>
+            <div class="mb-4"></div>
+            <form action="{{ route('profil.password') }}" method="POST">
+                @csrf
+                <div class="mb-3 w-sm-50">
+                    <label for="password_sekarang" class="form-label">Password Sekarang</label>
+                    <input type="password" class="form-control" id="password_sekarang" name="password_sekarang">
+                    @error('password_sekarang')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-3 w-sm-50">
+                    <label for="password_baru" class="form-label">Password Baru</label>
+                    <input type="password" class="form-control" id="password_baru" name="password_baru">
+                    @error('password_baru')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-3 w-sm-50">
+                    <label for="konfirmasi_password_baru" class="form-label">Konfirmasi Password Baru</label>
+                    <input type="password" class="form-control" id="konfirmasi_password_baru" name="konfirmasi_password_baru">
+                    @error('konfirmasi_password_baru')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <button class="btn btn-sm btn-primary" type="submit">Update Password</button>
+            </form>
+        </div>
+    </div>
 @endsection
