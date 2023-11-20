@@ -21,7 +21,8 @@ class JadwalMiddleware
         foreach (Jadwal::all() as $jadwal) {
             $penjadwalan = Penjadwalan::where('jadwal_id', $jadwal->id)->orderBy('urutan', 'DESC')->first();
             if ($penjadwalan && (strtotime($penjadwalan->tanggal_jadwal) < Carbon::now()->timestamp)) {
-                $tanggal = Carbon::parse($penjadwalan->tanggal_jadwal)->addDay();
+                $tanggalAfterLastPenjadwalan = Carbon::parse($penjadwalan->tanggal_jadwal)->addDay();
+                $tanggal = $tanggalAfterLastPenjadwalan->timestamp < Carbon::today()->timestamp ? Carbon::today() : $tanggalAfterLastPenjadwalan;
                 $penjadwalans = Penjadwalan::where('jadwal_id', $jadwal->id)->orderBy('urutan')->get();
                 foreach ($penjadwalans as $penjadwalan) {
                     if ($tanggal->isSaturday())
