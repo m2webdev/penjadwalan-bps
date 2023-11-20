@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Jadwal;
 use App\Models\Penjadwalan;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,6 +20,7 @@ class DashboardController extends Controller
                 'jumlah_pengguna' => User::count(),
                 'jumlah_jadwal' => Jadwal::count(),
                 'jumlah_penjadwalan' => Penjadwalan::count(),
+                'allPenjadwalan' => Penjadwalan::whereDate('tanggal_jadwal', Carbon::today()->toDateString())->get(),
             ];
 
 

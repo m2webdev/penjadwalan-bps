@@ -131,6 +131,29 @@
                 </div>
 
             </div>
+            @if (count($laporan['allPenjadwalan']) > 0)
+                <h6 class="fw-bold mt-5 mb-3">Jadwal Hari Ini</h6>
+                <table class="table table-striped border border-2" style="--bs-table-striped-bg: #55A5CC; --bs-table-striped-color: white; --bs-table-border-color: #55A5CC;">
+                    <thead class="table-head">
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Jadwal</th>
+                            <th scope="col">Pelaksana</th>
+                            <th scope="col">Tanggal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($laporan['allPenjadwalan'] as $penjadwalan)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $penjadwalan->jadwal->type_jadwal }}</td>
+                                <td>{{ $penjadwalan->user->name }}</td>
+                                <td>{{ $penjadwalan->tanggal_jadwal ? Carbon\Carbon::parse($penjadwalan->tanggal_jadwal)->translatedFormat('l, d F Y') : '-' }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            @endif
         </div>
     </div>
 @endsection
