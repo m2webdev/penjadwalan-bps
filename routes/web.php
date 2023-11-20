@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PenjadwalanController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserController;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +42,8 @@ Route::middleware('jadwal')->group(function() {
         Route::delete('/penjadwalan/delete/{id}/{jadwal}', [PenjadwalanController::class, 'delete'])->name('penjadwalan.delete');
         Route::put('/penjadwalan/{id}/update/{jadwal}', [PenjadwalanController::class, 'update'])->name('penjadwalan.update');
     });
+
+    Route::get('/download-laporan', [LaporanController::class, 'download']);
     
     Route::get('/auth', [SessionController::class, 'index'])->name('index.login');
     Route::post('/auth/login', [SessionController::class, 'login'])->name('login');

@@ -200,7 +200,7 @@
                                         <form id="formCreateAccount" action="{{ route('penjadwalan.create', ['jadwal' => App\Models\Jadwal::find($jadwal_id)]) }}"
                                             method="POST">
                                             @csrf
-                                            <div class="form-text">Nama Pelaksanaan</div>
+                                            <div class="form-text">Nama Pelaksana</div>
                                             <div class="form-floating form-floating-outline mb-4">
                                                 <select id="basic-default-role" class="form-select" name="user_tambah">
                                                     @foreach ($pengguna as $user)

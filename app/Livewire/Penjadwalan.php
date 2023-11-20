@@ -19,10 +19,13 @@ class Penjadwalan extends Component
         $this->jadwal_id = Jadwal::find($this->id)->id;
         $this->penjadwalans = ModelsPenjadwalan::where('jadwal_id', $this->id)->orderBy('urutan')->get();
         if (Jadwal::find($this->id)->type_jadwal == 'adzan' || Jadwal::find($this->id)->type_jadwal == 'Imam Sholat') {
-            $this->pengguna = User::where('agama', 'islam')->where('role', 'pengguna')->where('jk', 'laki-laki')->get();
+            $this->pengguna = User::where('agama', 'islam')->where('role', 'pengguna')->where('jk', 'laki-laki');
         }else {
-            $this->pengguna = User::where('role', 'pengguna')->where('jk', 'laki-laki')->get();
+            $this->pengguna = User::where('role', 'pengguna')->where('jk', 'laki-laki');
         }
+        $this->pengguna = $this->pengguna->whereDoesntHave('jadwals', function($query) {
+            $query->where('jadwal_id', $this->jadwal_id);
+        })->get();
         return view('livewire.penjadwalan');
     }
 

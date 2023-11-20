@@ -19,9 +19,9 @@ class JadwalMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         foreach (Jadwal::all() as $jadwal) {
-            $lastPenjadwalan = Penjadwalan::where('jadwal_id', $jadwal->id)->orderBy('urutan', 'DESC')->first();
-            if ($lastPenjadwalan && (strtotime($lastPenjadwalan) < Carbon::now()->timestamp)) {
-                $tanggal = Carbon::today();
+            $penjadwalan = Penjadwalan::where('jadwal_id', $jadwal->id)->orderBy('urutan', 'DESC')->first();
+            if ($penjadwalan && (strtotime($penjadwalan->tanggal_jadwal) < Carbon::now()->timestamp)) {
+                $tanggal = Carbon::parse($penjadwalan->tanggal_jadwal)->addDay();
                 $penjadwalans = Penjadwalan::where('jadwal_id', $jadwal->id)->orderBy('urutan')->get();
                 foreach ($penjadwalans as $penjadwalan) {
                     if ($tanggal->isSaturday())
