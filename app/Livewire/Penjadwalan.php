@@ -35,7 +35,7 @@ class Penjadwalan extends Component
             $penjadwalan = ModelsPenjadwalan::find($id);
             $currentUrutan = $penjadwalan->urutan;
             $currentTanggal = $penjadwalan->tanggal_jadwal;
-            $prevPenjadwalan = ModelsPenjadwalan::where('urutan', $currentUrutan - 1)->first();
+            $prevPenjadwalan = ModelsPenjadwalan::where('jadwal_id', $penjadwalan->jadwal_id)->where('urutan', $currentUrutan - 1)->first();
             $penjadwalan->urutan = $prevPenjadwalan->urutan;
             $penjadwalan->tanggal_jadwal = $prevPenjadwalan->tanggal_jadwal;
             $penjadwalan->save();
@@ -51,7 +51,7 @@ class Penjadwalan extends Component
             $penjadwalan = ModelsPenjadwalan::find($id);
             $currentUrutan = $penjadwalan->urutan;
             $currentTanggal = $penjadwalan->tanggal_jadwal;
-            $nextPenjadwalan = ModelsPenjadwalan::where('urutan', $currentUrutan + 1)->first();
+            $nextPenjadwalan = ModelsPenjadwalan::where('jadwal_id', $penjadwalan->jadwal->id)->where('urutan', $currentUrutan + 1)->first();
             $penjadwalan->urutan = $nextPenjadwalan->urutan;
             $penjadwalan->tanggal_jadwal = $nextPenjadwalan->tanggal_jadwal;
             $penjadwalan->save();
