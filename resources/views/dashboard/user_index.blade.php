@@ -2,8 +2,8 @@
 @section('title', 'dashboard')
 
 @section('content')
-    <div class="card content-pane">
-        <div class="card-body">
+    <div class="card">
+        <div class="tab-content">
             @foreach ($jadwals as $jadwal)
                 <div class="tab-pane fade {{ $loop->iteration == 1 ? 'active show' : '' }}"
                     id="navs-tab-{{ $jadwal->id }}" role="tabpanel">

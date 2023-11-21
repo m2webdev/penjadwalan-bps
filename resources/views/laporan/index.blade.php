@@ -80,12 +80,5 @@
 @endsection
 
 @section('content')
-    <div class="card">
-        <div class="card-header">
-            <h5 class="card-title">Laporan Penjadwalan Karyawan</h5>
-        </div>
-        <div class="card-body">
-            
-        </div>
-    </div>
+    @livewire('laporan')
 @endsection
