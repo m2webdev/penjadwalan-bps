@@ -22,7 +22,7 @@
                                 </tr>
                             </thead>
                             <tbody class="table-border-bottom-0" id="jadwal-table-{{ $jadwal->id }}">
-                                @foreach (\App\Models\Penjadwalan::where('jadwal_id', $jadwal->id)->orderBy('urutan')->get() as $item)
+                                @foreach (\App\Models\Penjadwalan::where('jadwal_id', $jadwal->id)->orderBy('tanggal_jadwal')->get() as $item)
                                     <tr>
                                         <td>
                                             {{ $loop->iteration }}

@@ -41,6 +41,8 @@ Route::middleware('jadwal')->group(function() {
             Route::post('/penjadwalan/create/{jadwal}', [PenjadwalanController::class, 'create'])->name('penjadwalan.create');
             Route::delete('/penjadwalan/delete/{id}/{jadwal}', [PenjadwalanController::class, 'delete'])->name('penjadwalan.delete');
             Route::put('/penjadwalan/{id}/update/{jadwal}', [PenjadwalanController::class, 'update'])->name('penjadwalan.update');
+
+            Route::post('/try-send-message', [PenjadwalanController::class, 'sendMessage'])->name('try.send.message');
     
             Route::get('profil', [ProfilController::class, 'index'])->name('profil');
             Route::post('profil/update-username', [ProfilController::class, 'updateUsername'])->name('profil.username');

@@ -3,11 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Penjadwalan;
+use App\Services\MessagesService;
 use Carbon\Carbon;
+use ErrorException;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class PenjadwalanController extends Controller
 {
+    private MessagesService $messagesService;
+
+    public function __construct(MessagesService $messagesService)
+    {
+        $this->messagesService = $messagesService;
+    }
+
     function index(Request $request)
     {
         $id = $request->id;
@@ -62,6 +72,22 @@ class PenjadwalanController extends Controller
         $user->delete();
 
         return redirect()->route('penjadwalan.index', ['id' => $request->jadwal])->with('success', 'Penjadwalan berhasil dihapus');
+    }
+
+    public function sendMessage(Request $request)
+    {
+        $request->validate([
+            'telegram_id' => ['required'],
+            'pesan' => ['required']
+        ]);
+        try {
+            $this->messagesService->send($request->telegram_id,$request->pesan);
+        } catch (ErrorException $e) {
+            throw ValidationException::withMessages([
+                'telegram_id' => $e->getMessage()
+            ]);
+        }
+        return back();
     }
 
 }

@@ -160,6 +160,23 @@
                     </tbody>
                 </table>
             @endif
+            <div class="mt-5">
+                <form action="{{ route('try.send.message') }}" method="POST" class="w-sm-50">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="telegram_id" class="form-label">Telegram Id</label>
+                        <input type="text" class="form-control" name="telegram_id" id="telegram_id">
+                        @error('telegram_id')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="pesan" class="form-label">Pesan</label>
+                        <textarea class="form-control" rows="3" name="pesan" id="pesan"></textarea>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Kirim Pesan Uji Coba</button>
+                </form>
+            </div>
         </div>
     </div>
 @endsection
