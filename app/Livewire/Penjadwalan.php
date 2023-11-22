@@ -7,6 +7,7 @@ use App\Models\Penjadwalan as ModelsPenjadwalan;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Livewire\Component;
 
 class Penjadwalan extends Component
@@ -18,10 +19,11 @@ class Penjadwalan extends Component
     {
         $this->jadwal_id = Jadwal::find($this->id)->id;
         $this->penjadwalans = ModelsPenjadwalan::where('jadwal_id', $this->id)->where('is_done', false)->orderBy('tanggal_jadwal')->get();
-        if (Jadwal::find($this->id)->type_jadwal == 'adzan' || Jadwal::find($this->id)->type_jadwal == 'Imam Sholat') {
+        $tipe_jadwal = Jadwal::find($this->id)->type_jadwal;
+        if (Str::startsWith(strtolower($tipe_jadwal), 'adzan') || Str::startsWith(strtolower($tipe_jadwal), 'imam')) {
             $this->pengguna = User::where('agama', 'islam')->where('role', 'pengguna')->where('jk', 'laki-laki');
         }else {
-            $this->pengguna = User::where('role', 'pengguna')->where('jk', 'laki-laki');
+            $this->pengguna = User::where('role', 'pengguna');
         }
         $this->pengguna = $this->pengguna->whereDoesntHave('jadwals', function($query) {
             $query->where('jadwal_id', $this->jadwal_id);

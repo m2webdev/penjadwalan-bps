@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Jadwal;
 use App\Models\Penjadwalan;
-use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
