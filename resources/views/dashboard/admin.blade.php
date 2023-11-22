@@ -138,7 +138,10 @@
 
             </div>
             @if (count($laporan['allPenjadwalan']) > 0)
-                <h6 class="fw-bold mt-5 mb-3">Jadwal Hari Ini</h6>
+                <div class="d-flex align-items-center justify-content-between mt-5 mb-4">
+                    <h6 class="fw-bold m-0">Jadwal Hari Ini</h6>
+                    <a href="{{ route('send.notification.alert.manually') }}" class="btn btn-primary">Kirim Notifikasi Telegram Secara Manual</a>
+                </div>
                 <table class="table table-striped border border-2" style="--bs-table-striped-bg: #55A5CC; --bs-table-striped-color: white; --bs-table-border-color: #55A5CC;">
                     <thead class="table-head">
                         <tr>

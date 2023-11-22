@@ -43,6 +43,7 @@ Route::middleware('jadwal')->group(function() {
             Route::put('/penjadwalan/{id}/update/{jadwal}', [PenjadwalanController::class, 'update'])->name('penjadwalan.update');
 
             Route::post('/try-send-message', [PenjadwalanController::class, 'sendMessage'])->name('try.send.message');
+            Route::get('/send-notification-alert-manually', [PenjadwalanController::class, 'sendNotificationManually'])->name('send.notification.alert.manually');
     
             Route::get('profil', [ProfilController::class, 'index'])->name('profil');
             Route::post('profil/update-username', [ProfilController::class, 'updateUsername'])->name('profil.username');

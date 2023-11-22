@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Penjadwalan;
 use App\Services\MessagesService;
+use App\Services\PenjadwalanService;
 use Carbon\Carbon;
 use ErrorException;
 use Illuminate\Http\Request;
@@ -87,6 +88,12 @@ class PenjadwalanController extends Controller
                 'telegram_id' => $e->getMessage()
             ]);
         }
+        return back();
+    }
+
+    public function sendNotificationManually()
+    {
+        app(PenjadwalanService::class)->sendNotificationAlert();
         return back();
     }
 
