@@ -21,6 +21,8 @@ return new class extends Migration
             $table->enum('role', ['super-admin', 'admin', 'pengguna'])->default('pengguna');
             $table->enum('jk', ['laki-laki', 'perempuan'])->default('laki-laki');
             $table->string('password');
+            $table->string('telegram_id')->nullable();
+            $table->string('no_wa')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

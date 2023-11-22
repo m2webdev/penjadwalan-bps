@@ -110,6 +110,9 @@
                         <th>Nama Lengkap</th>
                         <th>Jenis Kelamin</th>
                         <th>Username</th>
+                        <th>Agama</th>
+                        <th>Telegram Id</th>
+                        <th>No WhatsApp</th>
                         <th>Role</th>
                         <th>Actions</th>
                     </tr>
@@ -122,6 +125,8 @@
                             <td>{{ $user->jk }}</td>
                             <td>{{ $user->username }}</td>
                             <td>{{ $user->agama }}</td>
+                            <td>{{ $user->telegram_id }}</td>
+                            <td>{{ $user->no_wa }}</td>
                             <td>
                                 <span
                                     class="{{ $user->role === 'super-admin' ? 'badge rounded-pill bg-primary me-1' : ($user->role === 'admin' ? 'badge rounded-pill bg-label-info me-1' : 'badge rounded-pill bg-label-success me-1') }}">{{ $user->role }}</span>
@@ -250,7 +255,7 @@
                                                                                     Admin</option>
                                                                             </select>
                                                                         </div>
-                                                                        <div class="form-password-toggle">
+                                                                        <div class="form-password-toggle mb-4">
                                                                             <div class="input-group input-group-merge">
                                                                                 <div
                                                                                     class="form-floating form-floating-outline">
@@ -265,6 +270,22 @@
                                                                                     class="input-group-text cursor-pointer"><i
                                                                                         class="mdi mdi-eye-off-outline"></i></span>
                                                                             </div>
+                                                                        </div>
+                                                                        <div
+                                                                            class="form-floating form-floating-outline mb-4">
+                                                                            <input type="text" class="form-control"
+                                                                                id="telegram_id" name="telegram_id"
+                                                                                placeholder="11223344"
+                                                                                value="{{ $user->telegram_id }}" />
+                                                                            <label for="telegram_id">Telegram Id</label>
+                                                                        </div>
+                                                                        <div
+                                                                            class="form-floating form-floating-outline mb-4">
+                                                                            <input type="text" class="form-control"
+                                                                                id="no_wa" name="no_wa"
+                                                                                placeholder="08473*****"
+                                                                                value="{{ $user->no_wa }}" />
+                                                                            <label for="no_wa">No WhatsApp</label>
                                                                         </div>
                                                                         <div class="mb-4"></div>
 
@@ -381,7 +402,7 @@
                                                     <option value="Admin">Admin</option>
                                                 </select>
                                             </div>
-                                            <div class="form-password-toggle">
+                                            <div class="form-password-toggle mb-4">
                                                 <div class="input-group input-group-merge">
                                                     <div class="form-floating form-floating-outline">
                                                         <input type="password" id="password" class="form-control"
@@ -392,6 +413,19 @@
                                                     <span class="input-group-text cursor-pointer"><i
                                                             class="mdi mdi-eye-off-outline"></i></span>
                                                 </div>
+                                            </div>
+                                            <div class="form-floating form-floating-outline mb-4">
+                                                <input type="text" class="form-control"
+                                                    id="telegram_id" name="telegram_id"
+                                                    placeholder="11223344"/>
+                                                <label for="telegram_id">Telegram Id</label>
+                                            </div>
+                                            <div
+                                                class="form-floating form-floating-outline mb-4">
+                                                <input type="text" class="form-control"
+                                                    id="no_wa" name="no_wa"
+                                                    placeholder="08473*****"/>
+                                                <label for="no_wa">No WhatsApp</label>
                                             </div>
                                             <div class="mb-4"></div>
 

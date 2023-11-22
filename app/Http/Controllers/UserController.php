@@ -35,6 +35,8 @@ class UserController extends Controller
             'username' => $request->input('username_tambah'),
             'password' => Hash::make($request->input('password_tambah')),
             'agama' => $request->input('agama_tambah'),
+            'telegram_id' => $request->input('telegram_id'),
+            'no_wa' => $request->input('no_wa')
 
         ]);
 
@@ -59,6 +61,8 @@ class UserController extends Controller
         $user->jk = $request->input('jk');
         $user->role = $request->input('role');
         $user->agama = $request->input('agama');
+        $user->telegram_id = $request->input('telegram_id');
+        $user->no_wa = $request->input('no_wa');
         if($request->password != null)
         {
             $user->password = Hash::make($request->password);
