@@ -161,6 +161,13 @@
                 </table>
             @endif
             <div class="mt-5">
+                <h6 class="fw-semibold">Buat Pesan Uji Coba Untuk Notifikasi Telegram</h6>
+                <p>Cara mendapatkan telegram id:</p>
+                <ul>
+                    <li>Tulis di kolom pencarian telegram <strong>@userinfobot</strong></li>
+                    <li>Tap bot pada hasil pencarian</li>
+                    <li>Klik start</li>
+                </ul>
                 <form action="{{ route('try.send.message') }}" method="POST" class="w-sm-50">
                     @csrf
                     <div class="mb-3">
