@@ -24,7 +24,7 @@ class PenjadwalanController extends Controller
             'user_tambah' => 'required',
         ]);
 
-        $lastJadwal = Penjadwalan::where('jadwal_id', $request->jadwal)->orderBy('urutan', 'DESC')->first(); 
+        $lastJadwal = Penjadwalan::where('jadwal_id', $request->jadwal)->where('is_done', false)->orderBy('urutan', 'DESC')->first(); 
         $urutan = $lastJadwal !== null ? $lastJadwal->urutan + 1 : 1;
         $tanggal = $lastJadwal!== null && $lastJadwal->tanggal_jadwal !== null ? Carbon::parse($lastJadwal->tanggal_jadwal)->addDay() : null;
 

@@ -19,14 +19,14 @@
         <h5 class="card-header">List Penjadwalan {{App\Models\Jadwal::find($jadwal_id)->type_jadwal}}</h5>
         <div class="d-flex align-items-center justify-content-start gap-3 mx-3 flex-wrap mb-3">
             <button type="button" class="btn btn-primary {{ count($pengguna) == 0 ? 'disabled' : '' }}" data-bs-toggle="modal" data-bs-target="#modalCenter">@if(count($pengguna) > 0) + Tambah Penjadwalan {{App\Models\Jadwal::find($jadwal_id)->type_jadwal}} @else Tidak ada pengguna untuk ditambahkan @endif</button>
-            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#setDateModal">{{ App\Models\Penjadwalan::first() && App\Models\Penjadwalan::first()->tanggal_jadwal ? 'Reset Tanggal Jadwal' : 'Atur Tanggal Jadwal' }}</button>
+            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#setDateModal">{{ App\Models\Penjadwalan::where('jadwal_id', $jadwal_id)->where('is_done', false)->first() && App\Models\Penjadwalan::where('jadwal_id', $jadwal_id)->where('is_done', false)->first()->tanggal_jadwal ? 'Reset Tanggal Jadwal' : 'Atur Tanggal Jadwal' }}</button>
         </div>
 
         <div class="table-responsive text-nowrap">
             <table class="table">
                 <thead>
                     <tr class="text-center">
-                        <th>Urutan Jadwal</th>
+                        <th>No</th>
                         <th>Nama Pelaksana</th>
                         <th>Tipe Jadwal</th>
                         <th>Waktu Pelaksanaan</th>
@@ -36,7 +36,7 @@
                 <tbody class="table-border-bottom-0">
                     @foreach ($penjadwalans as $penjadwalan)
                         <tr class="text-center">
-                            <td>{{ $penjadwalan->urutan }}</td>
+                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $penjadwalan->user->name }}</td>
                             <td>{{ $penjadwalan->jadwal->type_jadwal }}</td>
                             <td>{{ $penjadwalan->tanggal_jadwal ? Carbon\Carbon::parse($penjadwalan->tanggal_jadwal)->translatedFormat('l, d F Y') : '-' }}</td>

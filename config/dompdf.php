@@ -178,7 +178,7 @@ return array(
           *
           * @var string
           */
-        'default_paper_orientation' => "portrait",
+        'default_paper_orientation' => "landscape",
 
         /**
          * The default font family
@@ -235,7 +235,7 @@ return array(
          *
          * @var bool
          */
-        "enable_php" => false,
+        "enable_php" => true,
 
         /**
          * Enable inline Javascript

@@ -19,18 +19,24 @@ class JadwalMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         foreach (Jadwal::all() as $jadwal) {
-            $penjadwalan = Penjadwalan::where('jadwal_id', $jadwal->id)->orderBy('urutan', 'DESC')->first();
-            if ($penjadwalan && (strtotime($penjadwalan->tanggal_jadwal) < Carbon::now()->timestamp)) {
+            $penjadwalan = Penjadwalan::where('jadwal_id', $jadwal->id)->where('is_done', false)->orderBy('tanggal_jadwal', 'DESC')->first();
+            if ($penjadwalan && (Carbon::parse($penjadwalan->tanggal_jadwal)->timestamp < Carbon::now()->timestamp)) {
                 $tanggalAfterLastPenjadwalan = Carbon::parse($penjadwalan->tanggal_jadwal)->addDay();
                 $tanggal = $tanggalAfterLastPenjadwalan->timestamp < Carbon::today()->timestamp ? Carbon::today() : $tanggalAfterLastPenjadwalan;
-                $penjadwalans = Penjadwalan::where('jadwal_id', $jadwal->id)->orderBy('urutan')->get();
+                $penjadwalans = Penjadwalan::where('jadwal_id', $jadwal->id)->where('is_done', false)->orderBy('urutan')->get();
                 foreach ($penjadwalans as $penjadwalan) {
                     if ($tanggal->isSaturday())
                         $tanggal->addDays(2);
                     elseif($tanggal->isSunday())
                         $tanggal->addDay();
-                    $penjadwalan->tanggal_jadwal = $tanggal->toDateString();
+                    $penjadwalan->is_done = true;
                     $penjadwalan->save();
+                    Penjadwalan::create([
+                        'user_id' => $penjadwalan->user_id,
+                        'jadwal_id' => $penjadwalan->jadwal_id,
+                        'urutan' => $penjadwalan->urutan,
+                        'tanggal_jadwal' => $tanggal->toDateString()
+                    ]);
                     $tanggal->addDay();
                 }
             }

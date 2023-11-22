@@ -7,16 +7,28 @@
             <button wire:click='templateLaporan' class="btn w-50 rounded-0 {{ !$is_custom ? 'btn-primary' : 'btn-outline-primary' }}">Laporan Template</button>
             <button wire:click='customLaporan' class="btn w-50 rounded-0 {{ $is_custom ? 'btn-primary' : 'btn-outline-primary' }}">Laporan Kustom</button>
         </div>
+        @error('penjadwalan')
+            <div class="alert alert-danger alert-dismissible mb-3" role="alert">
+                {{ $message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @enderror
         @if ($is_custom)
-            <form wire:submit.prevent='' class="w-sm-50">
+            <form wire:submit.prevent='downloadLaporanPdf' class="w-sm-50">
                 @csrf
                 <div class="mb-3">
                     <label for="date_from" class="form-label">Dari Tanggal</label>
                     <input type="date" class="form-control" id="date_from" wire:model.live='dari_tanggal'>
+                    @error('dari_tanggal')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="date_until" class="form-label">Sampai Tanggal</label>
                     <input type="date" class="form-control" id="date_until" wire:model.live='sampai_tanggal'>
+                     @error('sampai_tanggal')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="tipe_jadwal" class="form-label">Tipe Jadwal</label>
@@ -26,11 +38,14 @@
                             <option value="{{ $jadwal->type_jadwal }}">{{ $jadwal->type_jadwal }}</option>
                         @endforeach
                     </select>
+                     @error('tipe_jadwal')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <button class="btn btn-primary" type="submit">Download Laporan PDF</button>
             </form>
         @else
-            <form wire:submit.prevent='' class="w-sm-50">
+            <form wire:submit.prevent='downloadLaporanPdf' class="w-sm-50">
                 @csrf
                 <div class="mb-3">
                     <label for="tahun" class="form-label">Tahun</label>
@@ -40,6 +55,9 @@
                             <option value="{{ $tahun->tahun }}">{{ $tahun->tahun }}</option>
                         @endforeach
                     </select>
+                     @error('tahun')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="bulan" class="form-label">Bulan</label>
@@ -49,6 +67,9 @@
                             <option value="{{ $bulan->bulan }}">{{ $bulan->bulan }}</option>
                         @endforeach
                     </select>
+                     @error('bulan')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="tipe_jadwal" class="form-label">Tipe Jadwal</label>
@@ -58,6 +79,9 @@
                             <option value="{{ $jadwal->type_jadwal }}">{{ $jadwal->type_jadwal }}</option>
                         @endforeach
                     </select>
+                     @error('tipe_jadwal')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <button class="btn btn-primary" type="submit">Download Laporan PDF</button>
             </form>
