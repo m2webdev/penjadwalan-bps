@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Penjadwalan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -75,6 +76,10 @@ class UserController extends Controller
     function delete($id)
     {
         $user = User::find($id);
+        if (!$user) {
+            return back()->with('error', 'Tidak dapat menemukan pengguna');
+        }
+        Penjadwalan::where('user_id', $user->id)->delete();
         $user->delete();
 
         return redirect()->route('akun.index')->with('success', 'Pengguna berhasil dihapus');

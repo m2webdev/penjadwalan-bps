@@ -142,26 +142,28 @@
                     <h6 class="fw-bold m-0">Jadwal Hari Ini</h6>
                     <a href="{{ route('send.notification.alert.manually') }}" class="btn btn-primary">Kirim Notifikasi Telegram Secara Manual</a>
                 </div>
-                <table class="table table-striped border border-2" style="--bs-table-striped-bg: #55A5CC; --bs-table-striped-color: white; --bs-table-border-color: #55A5CC;">
-                    <thead class="table-head">
-                        <tr>
-                            <th scope="col">No</th>
-                            <th scope="col">Jadwal</th>
-                            <th scope="col">Pelaksana</th>
-                            <th scope="col">Tanggal</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($laporan['allPenjadwalan'] as $penjadwalan)
+                <div class="table-responsive text-nowrap">
+                    <table class="table table-striped border border-2" style="--bs-table-striped-bg: #55A5CC; --bs-table-striped-color: white; --bs-table-border-color: #55A5CC;">
+                        <thead class="table-head">
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $penjadwalan->jadwal->type_jadwal }}</td>
-                                <td>{{ $penjadwalan->user->name }}</td>
-                                <td>{{ $penjadwalan->tanggal_jadwal ? Carbon\Carbon::parse($penjadwalan->tanggal_jadwal)->translatedFormat('l, d F Y') : '-' }}</td>
+                                <th scope="col">No</th>
+                                <th scope="col">Jadwal</th>
+                                <th scope="col">Pelaksana</th>
+                                <th scope="col">Tanggal</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach ($laporan['allPenjadwalan'] as $penjadwalan)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $penjadwalan->jadwal->type_jadwal }}</td>
+                                    <td>{{ $penjadwalan->user->name }}</td>
+                                    <td>{{ $penjadwalan->tanggal_jadwal ? Carbon\Carbon::parse($penjadwalan->tanggal_jadwal)->translatedFormat('l, d F Y') : '-' }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             @endif
             <div class="mt-5">
                 <h6 class="fw-semibold">Buat Pesan Uji Coba Untuk Notifikasi Telegram</h6>
