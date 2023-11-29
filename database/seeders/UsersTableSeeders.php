@@ -19,7 +19,7 @@ class UsersTableSeeders extends Seeder
             'name' => 'Admin',
             'username' => 'admin',
             'jk' => 'laki-laki',
-            'role' => 'admin',
+            'role' => 'super-admin',
             'password' => Hash::make('12345'),
             'email_verified_at' => now(),
             'agama' => 'islam',
