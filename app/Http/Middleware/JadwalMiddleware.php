@@ -16,7 +16,7 @@ class JadwalMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (env('AP_ENV') == 'local') {
+        if (env('AP_ENV') == 'local' || env('APP_ENV') == 'production') {
             $service = app(PenjadwalanService::class);
             $service->setNextSchedule();
         }
