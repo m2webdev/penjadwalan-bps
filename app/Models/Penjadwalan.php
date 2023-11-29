@@ -20,4 +20,14 @@ class Penjadwalan extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function kultum(): BelongsTo
+    {
+        return $this->belongsTo(Kultum::class);
+    }
+
+    public function infografis():BelongsTo
+    {
+        return $this->belongsTo(Infografis::class);
+    }
 }

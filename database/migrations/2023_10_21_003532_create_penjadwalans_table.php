@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id'); 
             $table->unsignedBigInteger('jadwal_id'); 
+            $table->foreignId('kultum_id')->nullable();
+            $table->foreignId('infografis_id')->nullable();
             $table->dateTime('tanggal_jadwal')->nullable();
             $table->integer('urutan');
             $table->boolean('is_done')->default(false);

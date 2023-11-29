@@ -37,8 +37,12 @@
     <link rel="stylesheet" href="{{ asset('style/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
     <link rel="stylesheet" href="{{ asset('style/assets/vendor/libs/apex-charts/apex-charts.css') }}" />
 
-    <!-- Page CSS -->
-
+    <!-- include summernote css/js -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('style/assets/vendor/js/bootstrap.js') }}"></script>
+    
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <!-- Helpers -->
     <script src="{{ asset('style/assets/vendor/js/helpers.js') }}"></script>
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
@@ -148,9 +152,7 @@
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
-    <script src="{{ asset('style/assets/vendor/libs/jquery/jquery.js') }}"></script>
     <script src="{{ asset('style/assets/vendor/libs/popper/popper.js') }}"></script>
-    <script src="{{ asset('style/assets/vendor/js/bootstrap.js') }}"></script>
     <script src="{{ asset('style/assets/vendor/libs/node-waves/node-waves.js') }}"></script>
     <script src="{{ asset('style/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
     <script src="{{ asset('style/assets/vendor/js/menu.js') }}"></script>
@@ -165,7 +167,6 @@
 
     <!-- Page JS -->
     <script src="{{ asset('style/assets/js/dashboards-analytics.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
     <!-- Place this tag in your head or just before your close body tag. -->

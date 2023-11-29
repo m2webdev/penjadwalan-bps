@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\JadwalType;
+use App\Models\Jadwal;
 use App\Models\Penjadwalan;
 use App\Services\MessagesService;
 use App\Services\PenjadwalanService;
@@ -32,18 +34,26 @@ class PenjadwalanController extends Controller
         $request->validate([
             'user_tambah' => 'required',
         ]);
-
-        $lastJadwal = Penjadwalan::where('jadwal_id', $request->jadwal)->where('is_done', false)->orderBy('urutan', 'DESC')->first(); 
-        $urutan = $lastJadwal !== null ? $lastJadwal->urutan + 1 : 1;
-        $tanggal = $lastJadwal!== null && $lastJadwal->tanggal_jadwal !== null ? Carbon::parse($lastJadwal->tanggal_jadwal)->addDay() : null;
-
+        $jadwal = Jadwal::find($request->jadwal);
+        if (!$jadwal)
+            throw ValidationException::withMessages([
+                'penjadwalan' => 'Jadwal tidak ditemukan!'
+            ]);
+        $lastPenjadwalan = Penjadwalan::where('jadwal_id', $request->jadwal)->where('is_done', false)->orderBy('urutan', 'DESC')->first(); 
+        $urutan = $lastPenjadwalan !== null ? $lastPenjadwalan->urutan + 1 : 1;
+        $tanggal = null;
+        $tipe_jadwal = strtolower($jadwal->type_jadwal);
+        if ($tipe_jadwal == strtolower(JadwalType::KULTUM) || $tipe_jadwal == strtolower(JadwalType::SENAM)) {
+            $tanggal = $lastPenjadwalan!== null && $lastPenjadwalan->tanggal_jadwal !== null ? Carbon::parse($lastPenjadwalan->tanggal_jadwal)->addWeek() : null;
+        } else {
+            $tanggal = $lastPenjadwalan!== null && $lastPenjadwalan->tanggal_jadwal !== null ? Carbon::parse($lastPenjadwalan->tanggal_jadwal)->addDay() : null;
+        }
         Penjadwalan::create([
             'user_id' => $request->input('user_tambah'),
             'jadwal_id' => $request->jadwal,
             'urutan' => $urutan,
             'tanggal_jadwal' => $tanggal
         ]);
-
         return redirect()->route('penjadwalan.index', ['id' => $request->jadwal])->with('success', 'Penjadwalan berhasil dibuat!');
     }
 
@@ -93,7 +103,11 @@ class PenjadwalanController extends Controller
 
     public function sendNotificationManually()
     {
-        app(PenjadwalanService::class)->sendNotificationAlert();
+        try {
+            app(PenjadwalanService::class)->sendNotificationAlert();
+        } catch (ErrorException $e) {
+            return back()->with('error', $e->getMessage());
+        }
         return back();
     }
 
