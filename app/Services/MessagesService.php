@@ -5,6 +5,6 @@ namespace App\Services;
 interface MessagesService
 {
 
-    function send($tgid, $message);
+    function send($messageId, $message);
 
 }

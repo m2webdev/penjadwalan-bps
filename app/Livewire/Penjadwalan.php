@@ -10,13 +10,12 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 
 class Penjadwalan extends Component
 {
     public $id;
-    public $jadwal_id, $penjadwalans, $pengguna, $tanggal_jadwal, $is_create_kultum, $penjadwalan, $judul, $isi;
+    public $jadwal_id, $penjadwalans, $pengguna, $tanggal_jadwal, $is_create_kultum, $penjadwalan, $kultum_id, $judul, $isi;
 
     public function mount()
     {
@@ -116,6 +115,7 @@ class Penjadwalan extends Component
         $this->penjadwalan = $penjadwalan;
         $kultum = $this->penjadwalan->kultum;
         if ($kultum) {
+            $this->kultum_id = $kultum->id;
             $this->judul = $kultum->judul;
             $this->isi = $kultum->isi;
         }
@@ -124,12 +124,19 @@ class Penjadwalan extends Component
     public function saveKultum()
     {
         $this->validateKultumForm();
-        $kultum = Kultum::create([
-            'judul' => $this->judul,
-            'isi' => $this->isi,
-        ]);
-        $this->penjadwalan->kultum_id = $kultum->id;
-        $this->penjadwalan->save();
+        if ($this->kultum_id) {
+            $kultum = Kultum::find($this->kultum_id);
+            $kultum->judul = $this->judul;
+            $kultum->isi = $this->isi;
+            $kultum->save();
+        } else {
+            $kultum = Kultum::create([
+                'judul' => $this->judul,
+                'isi' => $this->isi,
+            ]);
+            $this->penjadwalan->kultum_id = $kultum->id;
+            $this->penjadwalan->save();
+        }
         session()->flash('kultum', 'Kultum berhasil disimpan!');
     }
 

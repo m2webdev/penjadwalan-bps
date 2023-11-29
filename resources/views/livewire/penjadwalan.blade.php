@@ -39,7 +39,7 @@
                                 <td>{{ $penjadwalan->user->name }}</td>
                                 <td>
                                     @if($tipe_jadwal == strtolower(App\Helper\JadwalType::KULTUM))
-                                        <a href="javascript:void(0)" wire:click='createKultum({{ $penjadwalan->id }})'>
+                                        <a href="{{ route('add.kultum', ['id' => $penjadwalan->id]) }}">
                                             {{ $penjadwalan->kultum ? $penjadwalan->kultum->judul : 'Buat kultum' }}
                                         </a>
                                     @else
@@ -193,33 +193,35 @@
         </div>
     </div>
 
-    <div style="display:{{ !$is_create_kultum ? 'none ' : 'flex' }}" class="card align-items-start p-4 mt-5">
-        @if (session('kultum'))
-            <div class="alert alert-success alert-dismissible mb-3 w-100" role="alert">
-                {{ session('kultum') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
-        <button class="btn btn-light rounded-pill d-inline shadow-none" wire:click='showAll'><i class="mdi mdi-arrow-left me-2"></i>Lihat semua kultum</button>
-        <form class="mt-4 w-sm-50" wire:submit.prevent='saveKultum'>
-            @csrf
-            <div class="mb-3">
-                <label for="judul" class="form-label">Judul</label>
-                <input type="text" class="form-control" wire:model.live='judul' id="judul">
-                @error('judul')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="isikultum" class="form-label">Isi Kultum</label>
-                <textarea rows="15" class="form-control" wire:model.live='isi' id="isikultum"></textarea>
-                @error('isi')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            <button class="btn btn-primary">Simpan</button>
-        </form>
-    </div>
+    @if($is_create_kultum)
+        <div class="card align-items-start p-4 mt-5">
+            @if (session('kultum'))
+                <div class="alert alert-success alert-dismissible mb-3 w-100" role="alert">
+                    {{ session('kultum') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+            <button class="btn btn-light rounded-pill d-inline shadow-none" wire:click='showAll'><i class="mdi mdi-arrow-left me-2"></i>Lihat semua kultum</button>
+            <form class="mt-4 w-sm-50" wire:submit.prevent='saveKultum' method="POST">
+                @csrf
+                <div class="mb-3">
+                    <label for="judul" class="form-label">Judul</label>
+                    <input type="text" class="form-control" wire:model.live='judul' id="judul">
+                    @error('judul')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="isikultum" class="form-label">Isi Kultum</label>
+                    <textarea rows="15" class="form-control" wire:model.live='isi' id="isikultum"></textarea>
+                    @error('isi')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <button class="btn btn-primary">Simpan</button>
+            </form>
+        </div>
+    @endif
 
     <div class="col-lg-4 col-md-6">
         <div class="mt-3">
@@ -321,11 +323,6 @@
             Livewire.on('dismiss-modal', function() {
                 $('#setDateModal').modal('hide')
             })
-            $('#isikultum').summernote({
-                placeholder: 'Hello Bootstrap 5',
-                tabsize: 2,
-                height: 100
-            });
         })
     </script>
 @endpush
