@@ -45,4 +45,11 @@ class KultumController extends Controller
         return back()->with('kultum', 'Kultum berhasil disimpan!');
     }
 
+    public function show(Kultum $kultum)
+    {
+        return response()->view('dashboard.show-kultum', [
+            'kultum' => $kultum
+        ]);
+    }
+
 }

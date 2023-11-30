@@ -19,6 +19,9 @@
                                     <th>No.</th>
                                     <th>Waktu Pelaksanaan</th>
                                     <th>Pelaksana</th>
+                                    @if($jadwal->type_jadwal == App\Helper\JadwalType::KULTUM)
+                                        <th>Kultum</th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody class="table-border-bottom-0" id="jadwal-table-{{ $jadwal->id }}">
@@ -37,6 +40,18 @@
                                                 {{ App\Models\User::find($item->user_id)->name }}
                                             </div>
                                         </td>
+                                        @if($jadwal->type_jadwal == App\Helper\JadwalType::KULTUM)
+                                            <td>
+                                                <a href="{{ $item->kultum ? route('show.kultum', ['kultum' => $item->kultum_id]) : '#' }}" class="{{ $loop->iteration % 2 == 1 ? 'text-white' : 'text-primary' }}">
+                                                    @if($item->kultum)
+                                                        {{ $item->kultum->judul }}
+                                                        <i class="mdi mdi-arrow-top-right-bold-box-outline ms-2"></i>
+                                                    @else
+                                                        Tidak ada kultum
+                                                    @endif
+                                                </a>
+                                            </td>
+                                        @endif
                                     </tr>
                                 @endforeach
                             </tbody>

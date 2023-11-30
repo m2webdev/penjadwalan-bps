@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('jadwal')->group(function() {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/kultum/{kultum:id}', [KultumController::class, 'show'])->name('show.kultum');
     Route::middleware('signin')->group(function () {
         Route::get('/auth/logout', [SessionController::class, 'logout'])->name('logout');
     
