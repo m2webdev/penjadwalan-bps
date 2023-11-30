@@ -7,11 +7,6 @@
             @foreach ($jadwals as $jadwal)
                 <div class="tab-pane fade {{ $loop->iteration == 1 ? 'active show' : '' }}"
                     id="navs-tab-{{ $jadwal->id }}" role="tabpanel">
-                    <div class=" mb-5">
-                        <label for="date-{{ $jadwal->id }}">Pilih Berdasarkan Waktu Pelaksanaan</label>
-                        <input class="form-control date-input" type="date" id="date-{{ $jadwal->id }}"
-                            data-jadwal-id="{{ $jadwal->id }}" />
-                    </div>
                     <div class="table-responsive text-nowrap">
                         <table class="table border border-2 table-striped" style="--bs-table-striped-bg: #55A5CC; --bs-table-striped-color: white; --bs-table-border-color: #55A5CC;" id="tables-{{$jadwal->id}}">
                             <thead id="thead-{{$jadwal->id}}">
@@ -21,11 +16,13 @@
                                     <th>Pelaksana</th>
                                     @if($jadwal->type_jadwal == App\Helper\JadwalType::KULTUM)
                                         <th>Kultum</th>
+                                    @elseif($jadwal->type_jadwal == App\Helper\JadwalType::INFOGRAFIS)
+                                        <th>Infografis</th>
                                     @endif
                                 </tr>
                             </thead>
                             <tbody class="table-border-bottom-0" id="jadwal-table-{{ $jadwal->id }}">
-                                @foreach (\App\Models\Penjadwalan::where('jadwal_id', $jadwal->id)->orderBy('tanggal_jadwal')->get() as $item)
+                                @foreach (\App\Models\Penjadwalan::where('jadwal_id', $jadwal->id)->orderBy('tanggal_jadwal', 'DESC')->get() as $item)
                                     <tr>
                                         <td>
                                             {{ $loop->iteration }}
@@ -48,6 +45,17 @@
                                                         <i class="mdi mdi-arrow-top-right-bold-box-outline ms-2"></i>
                                                     @else
                                                         Tidak ada kultum
+                                                    @endif
+                                                </a>
+                                            </td>
+                                        @elseif($jadwal->type_jadwal == App\Helper\JadwalType::INFOGRAFIS)
+                                            <td>
+                                                <a href="{{ $item->infografis ? route('show.infografis', ['infografis' => $item->infografis_id]) : '#' }}" class="{{ $loop->iteration % 2 == 1 ? 'text-white' : 'text-primary' }}">
+                                                    @if($item->infografis)
+                                                        {{ $item->infografis->judul }}
+                                                        <i class="mdi mdi-arrow-top-right-bold-box-outline ms-2"></i>
+                                                    @else
+                                                        Tidak ada infografis
                                                     @endif
                                                 </a>
                                             </td>

@@ -26,7 +26,7 @@ class DashboardController extends Controller
 
             return view('dashboard.admin', ['laporan' => $laporan]);
         } else {
-            $penjadwalan = Penjadwalan::orderBy('tanggal_jadwal')->get();
+            $penjadwalan = Penjadwalan::orderBy('tanggal_jadwal', 'DESC')->get();
             $jadwal = Jadwal::all();
 
             return view('dashboard.user_index', ['jadwals' => $jadwal, 'penjadwalan' => $penjadwalan, 'user' => $user]);

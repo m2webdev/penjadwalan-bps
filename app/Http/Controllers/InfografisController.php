@@ -63,4 +63,11 @@ class InfografisController extends Controller
         return back()->with('infografis', 'Berhasil mengupload gambar');
     }
 
+    public function show(Infografis $infografis)
+    {
+        return response()->view('dashboard.show-infografis', [
+            'infografis' => $infografis,
+        ]);
+    }
+
 }

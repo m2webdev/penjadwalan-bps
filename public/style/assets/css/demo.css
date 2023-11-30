@@ -139,13 +139,13 @@ body{
   transition: all 0.5s ease;
   cursor: pointer;
 }
-.form-img::before {
+.form-img::before:not(.show) {
   content: 'Klik untuk mengubah gambar!';
   position: absolute;
   top: 0;
   left: 0;
   transform: translate(50%, 50%);
 }
-.form-img:hover {
+.form-img:hover:not(.show) {
   background-color: #0077b376;
 }
