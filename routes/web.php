@@ -56,7 +56,7 @@ Route::middleware('jadwal')->group(function() {
             Route::post('profil/update-username', [ProfilController::class, 'updateUsername'])->name('profil.username');
             Route::post('profil/update-password', [ProfilController::class, 'updatePassword'])->name('profil.password');
     
-            Route::get('/laporan/download/', [LaporanController::class, 'download'])->name('laporan.download');
+            Route::get('/laporan/download/{type}', [LaporanController::class, 'download'])->name('laporan.download');
             Route::get('/laporan/show-pdf-format/', [LaporanController::class, 'showPdfView'])->name('laporan.pdf-format');
             Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
         });

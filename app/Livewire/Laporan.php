@@ -77,7 +77,7 @@ class Laporan extends Component
             throw ValidationException::withMessages([
                 'penjadwalan' => 'Data penjadwalan kosong'
             ]);
-        return redirect()->route('laporan.download')->with('penjadwalan', $allPenjadwalan);
+        return redirect()->route('laporan.download', ['type' => $this->tipe_jadwal])->with('penjadwalan', $allPenjadwalan);
     }
 
     private function getAllPenjadwalan()
