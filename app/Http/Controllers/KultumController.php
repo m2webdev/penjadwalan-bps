@@ -27,16 +27,19 @@ class KultumController extends Controller
             'isi' => ['required']
         ]);
         $kultum = null;
-        if (isset($request->kultum_id))
+        if (isset($request->kultum_id)) {
             $kultum = Kultum::find($request->kultum_id);
-        if ($kultum) {
-            $kultum->judul = $request->judul;
-            $kultum->isi = $request->isi;
+            if ($kultum) {
+                $kultum->judul = $request->judul;
+                $kultum->isi = $request->isi;
+                $kultum->save();
+            }
+        } else {
+            $kultum = Kultum::create([
+                'judul' => $request->judul,
+                'isi' => $request->isi,
+            ]);
         }
-        $kultum = Kultum::create([
-            'judul' => $request->judul,
-            'isi' => $request->isi,
-        ]);
         $penjadwalan = Penjadwalan::find($id);
         if ($penjadwalan) {
             $penjadwalan->kultum_id = $kultum->id;

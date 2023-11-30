@@ -26,16 +26,19 @@ class InfografisController extends Controller
             'isi' => ['required']
         ]);
         $infografis = null;
-        if (isset($request->infografis_id))
+        if (isset($request->infografis_id)) {
             $infografis = Infografis::find($request->infografis_id);
-        if ($infografis) {
-            $infografis->judul = $request->judul;
-            $infografis->isi = $request->isi;
+            if ($infografis) {
+                $infografis->judul = $request->judul;
+                $infografis->isi = $request->isi;
+                $infografis->save();
+            }
+        } else {
+            $infografis = Infografis::create([
+                'judul' => $request->judul,
+                'isi' => $request->isi,
+            ]);
         }
-        $infografis = Infografis::create([
-            'judul' => $request->judul,
-            'isi' => $request->isi,
-        ]);
         $penjadwalan = Penjadwalan::find($id);
         if ($penjadwalan) {
             $penjadwalan->infografis_id = $infografis->id;
