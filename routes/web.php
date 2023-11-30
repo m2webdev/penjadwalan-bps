@@ -46,8 +46,9 @@ Route::middleware('jadwal')->group(function() {
             Route::put('/penjadwalan/{id}/update/{jadwal}', [PenjadwalanController::class, 'update'])->name('penjadwalan.update');
             Route::get('penjadwalan/{id}/add-kultum', [KultumController::class, 'index'])->name('add.kultum');
             Route::post('penjadwalan/{id}/add-kultum', [KultumController::class, 'create'])->name('save.kultum');
-            Route::get('penjadwalan/{id}/add-infografis', [InfografisController::class, 'index'])->name('add.infografis');
-            Route::post('penjadwalan/{id}/add-infografis', [InfografisController::class, 'create'])->name('save.infografis');
+            Route::get('penjadwalan/{id}/infografis', [InfografisController::class, 'index'])->name('add.infografis');
+            Route::post('penjadwalan/{id}/infografis', [InfografisController::class, 'create'])->name('save.infografis');
+            Route::post('penjadwalan/infografis/{id}/upload-gambar', [InfografisController::class, 'uploadImg'])->name('save.img.infografis');
 
             Route::post('/try-send-message', [PenjadwalanController::class, 'sendMessage'])->name('try.send.message');
             Route::get('/send-notification-alert-manually', [PenjadwalanController::class, 'sendNotificationManually'])->name('send.notification.alert.manually');

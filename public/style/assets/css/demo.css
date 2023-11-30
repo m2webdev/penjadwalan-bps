@@ -4,7 +4,7 @@
 ******************************************************************************/
 
 body{
-  background-image:  linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('../../../storage/bps.png'); 
+  background-image:  linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('../../../storage/infografis/bps.png'); 
   background-size: 700px; 
   background-position: center;
 }
@@ -127,4 +127,25 @@ body{
 .layout-demo-info {
   text-align: center;
   margin-top: 1.25rem;
+}
+
+.form-img {
+  width: 288px;
+  height: 384px;
+  object-fit: cover;
+  border: 2px solid #0078B3;
+  border-radius: 6px;
+  position: relative;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+.form-img::before {
+  content: 'Klik untuk mengubah gambar!';
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(50%, 50%);
+}
+.form-img:hover {
+  background-color: #0077b376;
 }

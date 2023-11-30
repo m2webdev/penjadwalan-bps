@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Infografis;
 use App\Models\Penjadwalan;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\File;
 
 class InfografisController extends Controller
 {
@@ -45,6 +46,21 @@ class InfografisController extends Controller
             $penjadwalan->save();
         }
         return back()->with('infografis', 'Infografis berhasil disimpan!');
+    }
+
+    public function uploadImg(Request $request, $id)
+    {
+        $request->validate([
+            'gambar' => ['required', File::image()->max('3mb')]
+        ]);
+        $fileName = now()->timestamp . '.jpg';
+        $request->gambar->storePubliclyAs('public/infografis', $fileName);
+        $infografis = Infografis::find($id);
+        if($infografis) {
+            $infografis->gambar = $fileName;
+            $infografis->save();
+        }
+        return back()->with('infografis', 'Berhasil mengupload gambar');
     }
 
 }
