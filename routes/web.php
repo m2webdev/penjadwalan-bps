@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\InfografisController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\KultumController;
 use App\Http\Controllers\LaporanController;
@@ -45,6 +46,8 @@ Route::middleware('jadwal')->group(function() {
             Route::put('/penjadwalan/{id}/update/{jadwal}', [PenjadwalanController::class, 'update'])->name('penjadwalan.update');
             Route::get('penjadwalan/{id}/add-kultum', [KultumController::class, 'index'])->name('add.kultum');
             Route::post('penjadwalan/{id}/add-kultum', [KultumController::class, 'create'])->name('save.kultum');
+            Route::get('penjadwalan/{id}/add-infografis', [InfografisController::class, 'index'])->name('add.infografis');
+            Route::post('penjadwalan/{id}/add-infografis', [InfografisController::class, 'create'])->name('save.infografis');
 
             Route::post('/try-send-message', [PenjadwalanController::class, 'sendMessage'])->name('try.send.message');
             Route::get('/send-notification-alert-manually', [PenjadwalanController::class, 'sendNotificationManually'])->name('send.notification.alert.manually');

@@ -26,7 +26,7 @@
                         <th>No</th>
                         <th>Nama Pelaksana</th>
                         @php($tipe_jadwal = strtolower(App\Models\Jadwal::find($jadwal_id)->type_jadwal))
-                        <th>{{ $tipe_jadwal == strtolower(App\Helper\JadwalType::KULTUM) ? 'Kultum' : 'Tipe Jadwal' }}</th>
+                        <th>{{ $tipe_jadwal == strtolower(App\Helper\JadwalType::KULTUM) ? 'Kultum' : ($tipe_jadwal == strtolower(App\Helper\JadwalType::INFOGRAFIS) ? 'Infografis' : 'Tipe Jadwal') }}</th>
                         <th>Waktu Pelaksanaan</th>
                         <th>Actions</th>
                     </tr>
@@ -41,6 +41,10 @@
                                     @if($tipe_jadwal == strtolower(App\Helper\JadwalType::KULTUM))
                                         <a href="{{ route('add.kultum', ['id' => $penjadwalan->id]) }}">
                                             {{ $penjadwalan->kultum ? $penjadwalan->kultum->judul : 'Buat kultum' }}
+                                        </a>
+                                    @elseif($tipe_jadwal == strtolower(App\Helper\JadwalType::INFOGRAFIS))
+                                        <a href="{{ route('add.infografis', ['id' => $penjadwalan->id]) }}">
+                                            {{ $penjadwalan->infografis ? $penjadwalan->infografis->judul : 'Buat infografis' }}
                                         </a>
                                     @else
                                         {{ $penjadwalan->jadwal->type_jadwal }}
