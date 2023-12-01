@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\InfografisController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\KultumController;
@@ -25,7 +26,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('jadwal')->group(function() {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/kultum/{kultum:id}', [KultumController::class, 'show'])->name('show.kultum');
-    Route::get('infografis/{infografis:id}', [InfografisController::class, 'show'])->name('show.infografis');
+    Route::get('/infografis/{infografis:id}', [InfografisController::class, 'show'])->name('show.infografis');
+    Route::get('/image/{name}', [FileController::class, 'render'])->name('file.render');
     Route::middleware('signin')->group(function () {
         Route::get('/auth/logout', [SessionController::class, 'logout'])->name('logout');
     

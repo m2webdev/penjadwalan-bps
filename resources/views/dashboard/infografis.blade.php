@@ -119,7 +119,7 @@
                 <form action="{{ route('save.img.infografis', ['id' => $penjadwalan->infografis_id]) }}" method="POST" class="d-flex flex-column gap-3 mt-5 align-items-start" enctype="multipart/form-data">
                     @csrf
                     <h6 class="fw-bold">Gambar Infografis</h6>
-                    <img id="previewImage" src="{{ asset('storage/infografis/' . ($penjadwalan->infografis->gambar ? $penjadwalan->infografis->gambar : 'bps.png')) }}" alt="{{ $penjadwalan->infografis ? $penjadwalan->infografis->judul : 'infografis-bps-bonebol' }}" class="form-img" onclick="document.getElementById('infografis-img').click()">
+                    <img id="previewImage" src="{{ route('file.render', ['name' => ($penjadwalan->infografis->gambar ? $penjadwalan->infografis->gambar : 'bps.png')]) }}" alt="{{ $penjadwalan->infografis ? $penjadwalan->infografis->judul : 'infografis-bps-bonebol' }}" class="form-img" onclick="document.getElementById('infografis-img').click()">
                     <input type="file" id="infografis-img" name="gambar" hidden>
                     @error('gambar')
                         <div class="text-danger">{{ $message }}</div>

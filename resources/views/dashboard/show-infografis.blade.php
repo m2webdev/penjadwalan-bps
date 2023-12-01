@@ -8,7 +8,7 @@
                 <i class="mdi mdi-home-circle-outline me-2"></i>
                 Beranda
             </a>
-            <img src="{{ asset('storage/infografis/' . ($infografis->gambar ? $infografis->gambar : 'bps.png')) }}" alt="{{ $infografis->judul }}" class="form-img show mt-4 mx-auto">
+            <img src="{{ route('file.render', ['name' => ($infografis->gambar ? $infografis->gambar : 'bps.png')]) }}" alt="{{ $infografis->judul }}" class="form-img show mt-4 mx-auto">
             <h5 class="fw-bold my-4">{{ $infografis->judul }}</h5>
             {!! html_entity_decode($infografis->isi) !!}
             <div class="mt-5">
