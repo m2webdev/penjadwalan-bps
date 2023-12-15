@@ -169,7 +169,13 @@
                 <h6 class="fw-semibold">Buat Pesan Uji Coba Untuk Notifikasi Telegram</h6>
                 <p>Cara mendapatkan telegram id:</p>
                 <ul>
-                    <li>Tulis di kolom pencarian telegram <strong>@userinfobot</strong></li>
+                    <li>Tulis di kolom pencarian telegram <a href="https://t.me/userinfobot" class="text-decoration-none"><strong>@userinfobot</strong></a></li>
+                    <li>Tap bot pada hasil pencarian</li>
+                    <li>Klik start</li>
+                </ul>
+                <p>Terhubung dengan bot SIJATI:</p>
+                <ul>
+                    <li>Tulis di kolom pencarian telegram <a href="https://t.me/sijati_bps_bonebol_bot" class="text-decoration-none"><strong>@sijati_bps_bonebol_bot</strong></a></li>
                     <li>Tap bot pada hasil pencarian</li>
                     <li>Klik start</li>
                 </ul>
