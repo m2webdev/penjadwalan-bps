@@ -10,9 +10,26 @@
         .page-break {
             page-break-after: always;
         }
+        .garis-horizontal {
+            border-top: 5px solid black;
+            margin-bottom: 3px;
+        }
+        .garis-horizontal-sm {
+            border-top: 2px solid black;
+            margin-bottom: 25px;
+        }
     </style>
 </head>
 <body style="margin: {{ $type && $type == App\Helper\JadwalType::INFOGRAFIS ? '2cm' : '1cm' }}">
+    <div class="mb-4">
+        <img src="data:image;base64,{{ base64_encode(file_get_contents(public_path('/storage/infografis/bps.png'))) }}" width="75" height="75" style="float: left">
+        <div class="text-center my-auto">
+            <h5>BADAN PUSAT STATISTIK KABUPATEN BONE BOLANGO</h5>
+            <p>Jl. Prof. Dr. Ing. B. J. Habibie, Moutong, Kec. Tilongkabila, Kabupaten Bone Bolango Gorontalo 96119</p>
+        </div>
+    </div>
+    <div class="garis-horizontal"></div>
+    <div class="garis-horizontal-sm"></div>
     @foreach ($penjadwalan as $key => $value)
         @if($type && $type !== App\Helper\JadwalType::INFOGRAFIS && $loop->iteration > 1)
             <div class="page-break"></div>
