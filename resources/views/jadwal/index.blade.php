@@ -270,7 +270,7 @@
                                                     data-bs-dismiss="modal">
                                                     Tutup
                                                 </button>
-                                                <button type="submit" class="btn btn-primary">Tambah Pengguna</button>
+                                                <button type="submit" class="btn btn-primary">Tambah Jadwal</button>
                                             </div>
                                         </form>
                                         <div id="success-warning" class="alert alert-warning alert-dismissible"

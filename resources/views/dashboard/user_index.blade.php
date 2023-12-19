@@ -4,6 +4,14 @@
 @section('content')
     <div class="card">
         <div class="tab-content">
+            <div class="marquee">
+                <p>Jadwal hari ini :
+                    @foreach ($penjadwalanHariIni as $jadwalHariIni)
+                        @if($loop->iteration > 1) {{ ', ' }} @endif
+                        {{ $jadwalHariIni->jadwal->type_jadwal . ' ' . $jadwalHariIni->user->name }}
+                    @endforeach
+                </p>
+            </div>
             @foreach ($jadwals as $jadwal)
                 <div class="tab-pane fade {{ $loop->iteration == 1 ? 'active show' : '' }}"
                     id="navs-tab-{{ $jadwal->id }}" role="tabpanel">
