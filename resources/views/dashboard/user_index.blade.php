@@ -5,7 +5,7 @@
     <div class="card">
         <div class="tab-content">
             <div class="marquee">
-                <p>Jadwal hari ini :
+                <p class="text-bold text-success">Jadwal hari ini :
                     @foreach ($penjadwalanHariIni as $jadwalHariIni)
                         @if($loop->iteration > 1) {{ ', ' }} @endif
                         {{ $jadwalHariIni->jadwal->type_jadwal . ' ' . $jadwalHariIni->user->name }}
